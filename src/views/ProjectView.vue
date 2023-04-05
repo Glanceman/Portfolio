@@ -9,7 +9,7 @@
             <p class="text-gray-700 dark:text-gray-400">
               A Game made with Unreal Engine 5 and C++
             </p>
-            <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
+            <a href="https://github.com/Glanceman/FYP" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
           </div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
@@ -19,7 +19,7 @@
             <p class="text-gray-700 dark:text-gray-400">
                 An non-immersive Application made with Unreal Engine 5 to showcase virtual apartment
             </p>
-            <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
+            <a href="https://github.com/Glanceman/VRProject" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
           </div>
         </div>
         <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
@@ -29,7 +29,7 @@
             <p class="text-gray-700 dark:text-gray-400">
               A web-based interact music player built with P5.js , ML5.js.
             </p>
-            <a href="#" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
+            <a href="https://glanceman.github.io/SM2278-EnhancedMusicPlayer/" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
           </div>
         </div>
       </div>
