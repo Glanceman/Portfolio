@@ -6,8 +6,8 @@ import Footer from "./components/Footer.vue"
 
 <template>
   <Header />
-  <RouterView class=" my-3"/>
-  <Footer/>
+  <RouterView class=" my-3" />
+  <Footer />
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
   methods: {
 
   },
-  mounted(){
+  mounted() {
     import('aos/dist/aos.css');
     import('aos/dist/aos.js').then((AOS) => {
       AOS.init();

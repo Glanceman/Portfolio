@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto my-3">
+    <div class="container mx-auto my-3 ">
         <div >
             <ul class="flex flex-row justify-center gap-3 text-gray-700 dark:text-gray-50 text-sm">
                 <li>

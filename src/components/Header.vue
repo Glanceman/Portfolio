@@ -71,8 +71,6 @@ export default {
 
 <style scoped>
 #nav a.router-link-exact-active {
-	@apply dark:text-white;
-    @apply text-black;
-    @apply font-extrabold;
+	@apply dark:text-white text-black font-extrabold text-lg;
 }
 </style>
