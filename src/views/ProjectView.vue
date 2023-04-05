@@ -3,7 +3,7 @@
       <h1 class="text-3xl font-bold mb-4">Projects</h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
-          <img src="src/assets/image/FYP.png" alt="Project 1" class="h-64 w-full object-cover">
+          <img src="/image/FYP.png" alt="Project 1" class="h-64 w-full object-cover">
           <div class="p-4">
             <h2 class="text-xl font-bold mb-2">FYP-Xplore</h2>
             <p class="text-gray-700 dark:text-gray-400">
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
-          <img src="src/assets/image/Project2.png" alt="Project 2" class="h-64 w-full object-cover">
+          <img src="/image/Project2.png" alt="Project 2" class="h-64 w-full object-cover">
           <div class="p-4">
             <h2 class="text-xl font-bold mb-2">Virtual Apartment</h2>
             <p class="text-gray-700 dark:text-gray-400">
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
-          <img src="src/assets/image/Project3.png" alt="Project 3" class="h-64 w-full object-cover">
+          <img src="/image/Project3.png" alt="Project 3" class="h-64 w-full object-cover">
           <div class="p-4">
             <h2 class="text-xl font-bold mb-2">Interactive Music Player</h2>
             <p class="text-gray-700 dark:text-gray-400">

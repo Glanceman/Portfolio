@@ -8,7 +8,7 @@ import IconCard from '../components/Reusable/IconCard.vue';
     <h1 class="text-3xl font-bold mb-4">About Me</h1>
     <div class="flex flex-col lg:flex-row">
       <div class="w-full md:w-1/2 lg:w-1/3 p-4 mx-auto my-auto">
-        <img src="../assets/image/icon.png" alt="Profile Picture"
+        <img src="/image/icon.png" alt="Profile Picture"
           class=" mx-auto rounded-full h-64 w-64 object-cover border-4 border-white dark:border-gray-800 hover:border-indigo-600 transform transition duration-500 hover:scale-105">
       </div>
       <div class="w-full lg:w-2/3 p-4 mx-auto">
@@ -29,28 +29,28 @@ import IconCard from '../components/Reusable/IconCard.vue';
             Skill</h1>
           <ul class="flex flex-wrap">
             <li>
-              <IconCard ImagePath="src/assets/image/C++.png" Word="C++" />
+              <IconCard ImagePath="C++.png" Word="C++" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/UE5.png" Word="UE5" />
+              <IconCard ImagePath="UE5.png" Word="UE5" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/CSharp.png" Word="C#" />
+              <IconCard ImagePath="CSharp.png" Word="C#" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/JS.png" Word="JS" />
+              <IconCard ImagePath="JS.png" Word="JS" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/HTML5.png" Word="HTML5" />
+              <IconCard ImagePath="HTML5.png" Word="HTML5" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/CSS3.png" Word="CSS3" />
+              <IconCard ImagePath="CSS3.png" Word="CSS3" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/Python.png" Word="Python" />
+              <IconCard ImagePath="Python.png" Word="Python" />
             </li>
             <li>
-              <IconCard ImagePath="src/assets/image/Blender.png" Word="Blender" />
+              <IconCard ImagePath="Blender.png" Word="Blender" />
             </li>
           </ul>
         </div>
