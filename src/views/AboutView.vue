@@ -4,7 +4,7 @@ import IconCard from '../components/Reusable/IconCard.vue';
 
 
 <template>
-  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 dark:bg-gray-900 dark:text-white rounded-md shadow-md" data-aos="fade-up" data-aos-duration="1000">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-gray-200 dark:bg-gray-900 dark:text-white rounded-md shadow-md" data-aos="fade-up" data-aos-duration="1000">
     <h1 class="text-3xl font-bold mb-4">About Me</h1>
     <div class="flex flex-col lg:flex-row">
       <div class="w-full md:w-1/2 lg:w-1/3 p-4 mx-auto my-auto">

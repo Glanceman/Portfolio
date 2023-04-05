@@ -3,7 +3,7 @@
         <nav id="nav" class="px-4 py-2.5">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <div href="https://flowbite.com" class="flex items-center">
-                    <span class="self-center text-gray-200 text-4xl font-serif font-bold whitespace-nowrap">Ben</span>
+                    <span class="self-center text-gray-900 dark:text-gray-200 text-4xl font-serif font-bold whitespace-nowrap">Ben</span>
                 </div>
                 <div class="flex items-center lg:order-2">
                     <button data-collapse-toggle="mobile-menu-2" type="button" @click="toggle"
@@ -21,21 +21,21 @@
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <router-link to="/"
-                                class="block py-2 pr-4 pl-3 text-gray-200 border-gray-100 hover:bg-gray-600 hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-gray-800 hover:text-gray-900 dark:text-gray-200 dark:border-gray-100 dark:hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
                                 aria-current="page">
                                 Home
                             </router-link>
                         </li>
                         <li>
                             <router-link to="/about"
-                                class="block py-2 pr-4 pl-3 text-gray-200 border-gray-100 hover:bg-gray-600 hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
+                            class="block py-2 pr-4 pl-3 text-gray-700 border-gray-800 hover:text-gray-900 dark:text-gray-200 dark:border-gray-100 dark:hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
                                 aria-current="page">
                                 About
                             </router-link>
                         </li>
                         <li>
                             <router-link to="/project"
-                                class="block py-2 pr-4 pl-3 text-gray-200 border-gray-100 hover:bg-gray-600 hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
+                            class="block py-2 pr-4 pl-3 text-gray-700 border-gray-800 hover:text-gray-900 dark:text-gray-200 dark:border-gray-100 dark:hover:text-gray-50 lg:hover:bg-transparent lg:border-0 lg:p-0"
                                 aria-current="page">
                                 Project
                             </router-link>
@@ -71,7 +71,8 @@ export default {
 
 <style scoped>
 #nav a.router-link-exact-active {
-	@apply text-white;
+	@apply dark:text-white;
+    @apply text-black;
     @apply font-extrabold;
 }
 </style>

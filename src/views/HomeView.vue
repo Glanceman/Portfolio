@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-900">
-    <section class="text-white">
+  <div class="min-h-screen bg-gray-200 dark:bg-gray-900">
+    <section class=" text-black dark:text-white">
       <div class="container mx-auto px-4 py-16 text-center">
         <h1 class="text-5xl font-bold mb-4" data-aos="fade-up" data-aos-duration="1000">
           Hi, I'm {{ name }}
