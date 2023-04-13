@@ -32,6 +32,26 @@
             <a href="https://glanceman.github.io/SM2278-EnhancedMusicPlayer/" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
           </div>
         </div>
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+          <img src="/image/Project4.png" alt="Project 4" class="h-64 w-full object-cover">
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-2">Smart Telemedic</h2>
+            <p class="text-gray-700 dark:text-gray-400">
+              UX/UI design for the telemedic system 
+            </p>
+            <a href="https://www.figma.com/proto/fJLtZTmDyO1lld53LnMuM1/CS3483?node-id=0-1" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
+          </div>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+          <img src="/image/Project5.png" alt="Project 5" class="h-64 w-full object-cover">
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-2">Pocket TCM</h2>
+            <p class="text-gray-700 dark:text-gray-400">
+              UX/UI design for the traditional chinese medicine system 
+            </p>
+            <a href="https://www.figma.com/file/AYsWLXiT4ard9hV6uQzjvu/Cs3347-Group-Project?node-id=8-188&t=gD6zSKOkzzmRStFM-0" class="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-full transition duration-500 hover:bg-blue-600 hover:shadow-md transform hover:-translate-y-1">View project</a>
+          </div>
+        </div>
       </div>
     </div>
   </template>
