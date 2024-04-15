@@ -3,7 +3,7 @@ name: Deploy # workflow name
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy: # define job name
