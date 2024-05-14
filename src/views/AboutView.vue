@@ -47,9 +47,7 @@ import IconCard from '@/components/Reusable/IconCard.vue'
                 Skills
               </h1>
             </div>
-            <div class="text-2x1 font-bold">
-              Programming languages
-            </div>
+            <div class="text-2x1 font-bold">Programming languages</div>
             <ul class="flex flex-wrap">
               <li>
                 <IconCard ImagePath="/image/C++.png" Word="C++" />
@@ -69,11 +67,8 @@ import IconCard from '@/components/Reusable/IconCard.vue'
               <li>
                 <IconCard ImagePath="/image/Python.png" Word="Python" />
               </li>
-
             </ul>
-            <div class="text-2x1 font-bold">
-              Framework
-            </div>
+            <div class="text-2x1 font-bold">Framework</div>
             <ul class="flex flex-wrap">
               <li>
                 <IconCard ImagePath="/image/UE5.png" Word="UE5" />
@@ -91,7 +86,6 @@ import IconCard from '@/components/Reusable/IconCard.vue'
                 <IconCard ImagePath="/image/Pytorch.png" Word="Pytorch" />
               </li>
             </ul>
-
           </div>
           <div class="w-full" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
             <div class="w-fit my-1 py-1">
