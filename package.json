@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
-    "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "typed.js": "^2.1.0",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
