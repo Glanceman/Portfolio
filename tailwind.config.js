@@ -6,7 +6,16 @@ module.exports = {
     "./src/assets"
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes:{
+        myanimation : {
+          '0%': { transform: 'skew(0deg,0deg)' },
+          '25%': { transform: 'skew(10deg,0.5deg)' },
+          '50%': { transform: 'skew(0deg,0deg)' },
+          '75%': { transform: 'skew(-10deg,-0.5deg)' },
+        }
+      }
+    },
   },
   plugins: [],
 }
