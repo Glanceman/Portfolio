@@ -1,5 +1,11 @@
 [
     {
+        "name":"DGCNN",
+        "description":"A Point Cloud classification with DGCNN",
+        "image":"/image/point_cloud.png",
+        "link":"https://github.com/Glanceman/DGCNN"
+    },
+    {
         "name":"Web Donation",
         "description":"A Web Donation make used with blockchain technology",
         "image":"/image/web-donation.png",

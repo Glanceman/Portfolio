@@ -17,15 +17,15 @@ function getUrl(path) {
 <template>
   <div class="w-full h-full flex flex-col justify-center content-center">
     <div
-      class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8"
+      class="max-w-7xl mx-auto h-[75%] py-12 px-8 overflow-hidden"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
       <h1 class="text-3xl font-bold mb-4 text-pink-600">Projects</h1>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <ul class="grid grid-cols-1 h-full sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-x-hidden">
         <li v-for="project in projects">
           <div
-            class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105"
+            class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105 mx-2"
           >
             <img
               :src="getUrl(project.image)"
@@ -33,8 +33,8 @@ function getUrl(path) {
               class="h-64 w-full object-cover"
             />
             <div class="p-4">
-              <h2 class="text-xl font-bold mb-2 text-white">{{ project.name }}</h2>
-              <p class="text-gray-700 dark:text-gray-400">
+              <h2 class="text-xl font-bold mb-2 text-black">{{ project.name }}</h2>
+              <p class="text-black">
                 {{ project.description }}
               </p>
               <a
@@ -54,3 +54,29 @@ function getUrl(path) {
     </div>
   </div>
 </template>
+
+
+<style>
+::-webkit-scrollbar {
+    width: 15px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: white;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-pink-700;
+
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-pink-600 ;
+}
+
+
+
+</style>
