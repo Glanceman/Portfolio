@@ -2,10 +2,10 @@
     <div class="container mx-auto my-3 ">
         <div >
             <ul class="flex flex-row justify-center gap-3 text-black">
-                <li>
+                <li class="hover:font-extrabold">
                     <a href="https://github.com/Glanceman">Github</a>
                 </li>
-                <li>
+                <li class="hover:font-extrabold">
                     <a href="https://www.linkedin.com/in/ben-xian-5831a5228/">Linkedin</a>
                 </li>
             </ul>
