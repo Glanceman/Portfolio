@@ -1,5 +1,6 @@
 <script setup>
 import IconCard from '@/components/Reusable/IconCard.vue'
+import Scene from '../components/Scene.vue';
 </script>
 
 <template>
@@ -11,14 +12,16 @@ import IconCard from '@/components/Reusable/IconCard.vue'
     >
       <h1 class="text-3xl font-bold mb-4 text-pink-600">About Me</h1>
       <div class="flex flex-col lg:flex-row">
-        <div class="w-full md:w-1/2 lg:w-1/3 p-4 mx-auto my-auto">
-          <img
+        <div class=" h-96 md:w-1/2 lg:w-1/3 p-2 mx-auto my-auto">
+          <!-- <img
             src="/image/icon.png"
             alt="Profile Picture"
             class="mx-auto rounded-full h-64 w-64 object-cover border-4 border-white dark:border-gray-800 hover:border-pink-700 transform transition duration-500 hover:scale-105"
-          />
+          /> -->
+          <Scene/>
         </div>
-        <div class="w-2/3 p-4 mx-auto">
+
+        <div class="w-2/3 p-4 h-full mx-auto">
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
@@ -48,7 +51,7 @@ import IconCard from '@/components/Reusable/IconCard.vue'
               </h1>
             </div>
             <div class="text-2x1 font-bold">Programming languages</div>
-            <ul class="flex flex-wrap">
+            <ul class="flex flex-wrap space-x-2">
               <li>
                 <IconCard ImagePath="/image/C++.png" Word="C++" />
               </li>
@@ -69,7 +72,7 @@ import IconCard from '@/components/Reusable/IconCard.vue'
               </li>
             </ul>
             <div class="text-2x1 font-bold">Framework</div>
-            <ul class="flex flex-wrap">
+            <ul class="flex flex-wrap space-x-2">
               <li>
                 <IconCard ImagePath="/image/UE5.png" Word="UE5" />
               </li>
@@ -97,12 +100,12 @@ import IconCard from '@/components/Reusable/IconCard.vue'
                 Contact
               </h1>
             </div>
-            <p class="text-black mb-4">
+            <p class="text-black mb-4 hover:text-pink-600 font-extrabold">
               Email: <a href="mailto: benxian456@gmail.com">benxian456@gmail.com</a>
             </p>
-            <a class="text-black mb-4" href="https://github.com/Glanceman">Github</a>
+            <a class="text-black mb-4 hover:text-pink-600 font-extrabold" href="https://github.com/Glanceman">Github</a>
             <span> | </span>
-            <a class="text-black mb-4" href="https://www.linkedin.com/in/ben-xian-5831a5228/"
+            <a class="text-black mb-4 hover:text-pink-600 font-extrabold" href="https://www.linkedin.com/in/ben-xian-5831a5228/"
               >Linkedin</a
             >
           </div>

@@ -1,17 +1,7 @@
 <script setup>
 import projects from '@/assets/projects.json'
+import { getUrl, } from '@/assets/tools.js'
 
-
-
-let temp = import.meta.env
-let base_url =temp.BASE_URL
-base_url = base_url.slice(0,base_url.length-1)
-console.log(base_url)
-function getUrl(path) {
-  let tmp = new URL(base_url+path,import.meta.url)
-  let href = tmp.href
-  return href
-}
 </script>
 
 <template>

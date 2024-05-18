@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "three": "^0.164.1",
     "typed.js": "^2.1.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
