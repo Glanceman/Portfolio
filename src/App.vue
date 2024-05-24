@@ -4,6 +4,7 @@ import Header from '@/components/Header.vue'
 import Footer from './components/Footer.vue'
 import { ref, computed, onMounted, toRaw } from 'vue'
 import('aos/dist/aos.css')
+
 import('aos/dist/aos.js').then((AOS) => {
   AOS.init()
 })
@@ -13,18 +14,39 @@ const page = ref(null) // get the page
 let offsetX = ref('0px')
 let menuState = ref('Close')
 
+//v-directive
+const vResize = {
+  mounted: (el, binding) => {
+    const onResizeCallback = binding.value
+    window.addEventListener('resize', () => {
+      const width = document.documentElement.clientWidth
+      const height = document.documentElement.clientHeight
+      onResizeCallback(width, height)
+    })
+  },
+  unmounted: (el, binding, vnode, prevVnode) => {
+    console.log('unmounted')
+    window.removeEventListener('resize')
+  }
+}
+
+function handleResize(width, height) {
+  console.log('trigger Resize', width, height)
+  offsetX.value = menu.value.root.offsetWidth + 'px'
+}
+
 function TriggerMenu() {
   console.log('trigger')
   const pageComponent = page.value
   if (menuState.value == 'Close') {
-    offsetX = Math.floor(menu.value.root.offsetWidth) + 'px'
+    offsetX.value = Math.floor(menu.value.root.offsetWidth) + 'px'
     pageComponent.classList.add('myTranslate')
     menuState.value = 'Open'
   } else {
     menuState.value = 'Close'
     pageComponent.classList.remove('myTranslate')
   }
-  console.log(menu.value.root.offsetWidth)
+  console.log(menu)
   console.log(offsetX.value)
 }
 
@@ -34,12 +56,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden">
-    <div ref="page" class="relative overflow-visible transition-transform ease-in-out">
-      <div>
-        <Header ref="menu" />
-      </div>
-      <div class="w-screen h-screen">
+  <div v-resize="handleResize" class="overflow-hidden">
+    <div ref="page" class="w-screen h-screen relative transition-transform ease-in-out">
+      <Header ref="menu" />
+
+      <div class="w-full h-full">
         <RouterView />
       </div>
       <button
@@ -47,14 +68,16 @@ onMounted(() => {
         class="absolute top-10 right-10 rounded-lg size-16 px-auto py-auto"
         @click="TriggerMenu"
       >
-        <div class="flex justify-center hover:bg-pink-700 hover:animate-[myanimation_1s_linear_infinite]">
+        <div
+          class="flex justify-center hover:bg-pink-700 hover:animate-[myanimation_1s_linear_infinite]"
+        >
           <div v-if="menuState === 'Open'">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
+              width="48"
+              height="48"
               fill="white"
-              class="bi bi-three-dots-vertical"
+              class="bi bi-three-dots-vertical stroke-black stroke-[0.5]"
               viewBox="0 0 16 16"
             >
               <path
@@ -65,10 +88,10 @@ onMounted(() => {
           <div v-if="menuState === 'Close'">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
+              width="48"
+              height="48"
               fill="white"
-              class="bi bi-list"
+              class="bi bi-list stroke-black stroke-[0.5]"
               viewBox="0 0 16 16"
             >
               <path

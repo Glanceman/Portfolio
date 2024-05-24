@@ -5,7 +5,7 @@ import { getUrl, } from '@/assets/tools.js'
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col justify-center content-center">
+  <div class="w-screen h-screen flex flex-col justify-center content-center">
     <div
       class="max-w-7xl mx-auto h-[75%] py-12 px-8 overflow-hidden"
       data-aos="fade-up"
@@ -46,7 +46,7 @@ import { getUrl, } from '@/assets/tools.js'
 </template>
 
 
-<style>
+<style scoped>
 ::-webkit-scrollbar {
     width: 15px;
 }
