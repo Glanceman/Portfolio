@@ -6,7 +6,7 @@ import Scene from '../components/Scene.vue';
 <template>
   <div class="w-full h-full flex flex-col justify-center content-center">
     <div
-      class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white text-black"
+      class="max-w-7xl mx-auto  max-h-[100%] py-12 px-4 sm:px-6 lg:px-8 bg-white text-black overflow-y-auto"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
@@ -22,7 +22,7 @@ import Scene from '../components/Scene.vue';
         </div>
 
         <div class="w-2/3 p-4 h-full mx-auto">
-          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <div class="w-full">
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
@@ -40,7 +40,7 @@ import Scene from '../components/Scene.vue';
               Thanks for visiting!
             </p>
           </div>
-          <div class="w-full" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+          <div class="w-full">
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
@@ -90,7 +90,7 @@ import Scene from '../components/Scene.vue';
               </li>
             </ul>
           </div>
-          <div class="w-full" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+          <div class="w-full" >
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
