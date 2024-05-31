@@ -1,7 +1,6 @@
 <script setup>
 import projects from '@/assets/projects.json'
-import { getUrl, } from '@/assets/tools.js'
-
+import { getUrl } from '@/assets/tools.js'
 </script>
 
 <template>
@@ -24,6 +23,14 @@ import { getUrl, } from '@/assets/tools.js'
             />
             <div class="p-4">
               <h2 class="text-xl font-bold mb-2 text-black">{{ project.name }}</h2>
+              <div class="grid grid-flow-row-dense grid-cols-4 gap-4 my-1">
+                <div
+                  class="font-bold md:text-black text-xs lg:text-base border-2 border-black text-center overflow-hidden"
+                  v-for="tag in project.tag"
+                >
+                  {{ tag }}
+                </div>
+              </div>
               <p class="text-black">
                 {{ project.description }}
               </p>
@@ -45,28 +52,23 @@ import { getUrl, } from '@/assets/tools.js'
   </div>
 </template>
 
-
 <style scoped>
 ::-webkit-scrollbar {
-    width: 15px;
+  width: 15px;
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
-    background: white;
+  background: white;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-pink-700;
-
+  @apply bg-pink-700;
 }
- 
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-pink-600 ;
+  @apply bg-pink-600;
 }
-
-
-
 </style>
