@@ -6,7 +6,7 @@ import { ref, computed, onMounted, toRaw } from 'vue'
 import('aos/dist/aos.css')
 
 import('aos/dist/aos.js').then((AOS) => {
-  AOS.init()
+  AOS.init({once: true})
 })
 
 const menu = ref(null)

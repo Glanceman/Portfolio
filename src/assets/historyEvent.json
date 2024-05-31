@@ -1,0 +1,38 @@
+[
+    {
+        "name":"Master of Science in Computer Science",
+        "organization":" City University of Hong Kong",
+        "type":"Education",
+        "description":"CGPA: 3.45 (Credit)",
+        "tech_stack":["Python","Pytorch","JS","Vue3","Java"],
+        "from":"2023-9",
+        "to":"2024-6"
+    },
+    {
+        "name":"Bachelor of Science in Creative Media",
+        "organization":" City University of Hong Kong",
+        "type":"Education",
+        "description":"CGPA: 3.54 (First Class)",
+        "tech_stack":["C++","JS","Java","Android Stuido"],
+        "from":"2019-9",
+        "to":"2023-6"
+    },
+    {
+        "name":"VR/XR developer",
+        "organization":"Votanic",
+        "type":"Work",
+        "description":"Steroscopic rendering",
+        "tech_stack":["C++","C#","Unity","Unreal 5"],
+        "from":"2023-5",
+        "to":"2023-8"
+    },
+    {
+        "name":"Programmer",
+        "organization":"TabNext",
+        "type":"Work",
+        "description":"Web Development",
+        "tech_stack":["VueJS","NodeJS",".Net"],
+        "from":"2022-5",
+        "to":"2022-8"
+    }
+]

@@ -1,42 +1,49 @@
 [
     {
         "name":"DGCNN",
+        "tag" :["Python","Pytorch"],
         "description":"A Point Cloud classification with DGCNN",
         "image":"/image/point_cloud.png",
         "link":"https://github.com/Glanceman/DGCNN"
     },
     {
         "name":"Web Donation",
+        "tag" :["Vue3","Web3.js","JS"],
         "description":"A Web Donation make used with blockchain technology",
         "image":"/image/web-donation.png",
         "link":"https://github.com/Glanceman/Web-Donation"
     },
     {
         "name":"FYP-Xplore",
+        "tag" :["C++","Unreal 5"],
         "description":"A Game made with Unreal Engine 5 and C++",
         "image":"/image/FYP.png",
         "link":"https://github.com/Glanceman/FYP"
     },
     {
         "name":"Virtual Apartment",
+        "tag" :["Unreal 5"],
         "description":"An non-immersive Application made with Unreal Engine 5 to showcase virtual apartment",
         "image":"/image/Project2.png",
         "link":"https://github.com/Glanceman/VRProject"
     },
     {
         "name":"Interactive Music Player",
+        "tag" :["JS","P5JS","ML5.js"],
         "description":"A web-based interact music player built with P5.js , ML5.js.",
         "image":"/image/Project3.png",
         "link":"https://glanceman.github.io/SM2278-EnhancedMusicPlayer/"
     },
     {
         "name":"Smart Telemedic",
+        "tag" :["Figma"],
         "description":"UX/UI design for the telemedic system",
         "image":"/image/Project4.png",
         "link":"https://www.figma.com/proto/fJLtZTmDyO1lld53LnMuM1/CS3483?node-id=0-1"
     },
     {
         "name":"Pocket TCM",
+        "tag" :["Figma"],
         "description":"UX/UI design for the traditional chinese medicine system ",
         "image":"/image/Project5.png",
         "link":"https://www.figma.com/file/AYsWLXiT4ard9hV6uQzjvu/Cs3347-Group-Project?node-id=8-188&t=gD6zSKOkzzmRStFM-0"

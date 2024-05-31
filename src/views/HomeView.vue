@@ -5,7 +5,7 @@ const typing = ref(null)
 
 onMounted(() => {
   new Typed(typing.value, {
-    strings: ['Ben', 'Developer', 'Software engineer'],
+    strings: ['Ben', 'Developer', 'Software engineer','UX/UI designer'],
     typeSpeed: 100,
     backSpeed: 60,
     loop: true
@@ -36,7 +36,7 @@ onMounted(() => {
     </video>
     </div>
     <div class="absolute left-10 bottom-40">
-      <div class="text-white lg:text-6xl sm:text-4x1">
+      <div class="text-white  text-base sm:text-4xl lg:text-6xl ">
         <div class=" m-1">Welcome to my page</div>
         <div>Hi, I am <span ref="typing" class="text-pink-600 font-extrabold"></span></div>
       </div>

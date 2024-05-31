@@ -1,27 +1,30 @@
 <script setup>
 import IconCard from '@/components/Reusable/IconCard.vue'
-import Scene from '../components/Scene.vue';
+import Scene from '../components/Scene.vue'
+import historyEvents from '@/assets/historyEvent.json'
+
+// Get Work exp
+let workHistory = historyEvents.filter((e) => e.type === 'Work')
+console.log(workHistory)
+
+let educationHistory = historyEvents.filter((e) => e.type === 'Education')
+console.log(educationHistory)
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col justify-center content-center">
-    <div
-      class="max-w-7xl mx-auto  max-h-[100%] py-12 px-4 sm:px-6 lg:px-8 bg-white text-black overflow-y-auto"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-    >
+  <div
+    class="w-full h-full flex flex-col justify-around content-center gap-1 overflow-y-auto"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
+    <div class="max-w-7xl mx-auto w-full py-12 px-4 sm:px-6 lg:px-8 bg-white text-black">
       <h1 class="text-3xl font-bold mb-4 text-pink-600">About Me</h1>
       <div class="flex flex-col lg:flex-row">
-        <div class=" h-96 md:w-1/2 lg:w-1/3 p-2 mx-auto my-auto">
-          <!-- <img
-            src="/image/icon.png"
-            alt="Profile Picture"
-            class="mx-auto rounded-full h-64 w-64 object-cover border-4 border-white dark:border-gray-800 hover:border-pink-700 transform transition duration-500 hover:scale-105"
-          /> -->
-          <Scene/>
+        <div class="h-96 w-fit p-2 mx-auto my-auto">
+          <Scene />
         </div>
 
-        <div class="w-2/3 p-4 h-full mx-auto">
+        <div class="md:w-2/3 max-sm:w-full p-4 h-full mx-auto">
           <div class="w-full">
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
@@ -90,7 +93,7 @@ import Scene from '../components/Scene.vue';
               </li>
             </ul>
           </div>
-          <div class="w-full" >
+          <div class="w-full">
             <div class="w-fit my-1 py-1">
               <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
@@ -103,16 +106,91 @@ import Scene from '../components/Scene.vue';
             <p class="text-black mb-4 hover:text-pink-600 font-extrabold">
               Email: <a href="mailto: benxian456@gmail.com">benxian456@gmail.com</a>
             </p>
-            <a class="text-black mb-4 hover:text-pink-600 font-extrabold" href="https://github.com/Glanceman">Github</a>
+            <a
+              class="text-black mb-4 hover:text-pink-600 font-extrabold"
+              href="https://github.com/Glanceman"
+              >Github</a
+            >
             <span> | </span>
-            <a class="text-black mb-4 hover:text-pink-600 font-extrabold" href="https://www.linkedin.com/in/ben-xian-5831a5228/"
+            <a
+              class="text-black mb-4 hover:text-pink-600 font-extrabold"
+              href="https://www.linkedin.com/in/ben-xian-5831a5228/"
               >Linkedin</a
             >
           </div>
         </div>
       </div>
     </div>
+
+    <div class="max-w-7xl w-full py-12 mx-auto px-5 bg-white">
+      <h1 class="text-3xl font-bold mb-4 text-pink-600">Education</h1>
+      <ol class="relative border-l-4 border-black">
+        <li class="mb-10 ms-4" v-for="education in educationHistory">
+          <div class="absolute w-3 h-3 bg-pink-600 mt-1.5 -start-1.5"></div>
+          <time class="mb-1 text-sm font-normal leading-none text-black"
+            >{{ education.from }} - {{ education.to }}</time
+          >
+          <h3 class="text-lg font-semibold text-black">{{ education.name }}</h3>
+          <h4 class="text-base font-semibold text-black">{{ education.organization }}</h4>
+          <div class="flex flex-row flex-wrap gap-4 my-1">
+                <div
+                  class=" px-1 font-bold text-black text-xs lg:text-base border-2 border-black text-center overflow-hidden"
+                  v-for="tag in education.tech_stack"
+                >
+                  {{ tag }}
+                </div>
+          </div>
+          <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+            {{ education.description }}
+          </p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="max-w-7xl w-full py-12 mx-auto px-5 bg-white">
+      <h1 class="text-3xl font-bold mb-4 text-pink-600">Work Experience</h1>
+      <ol class="relative border-l-4 border-black">
+        <li class="mb-10 ms-4" v-for="work in workHistory">
+          <div class="absolute w-3 h-3 bg-pink-600 mt-1.5 -start-1.5"></div>
+          <time class="mb-1 text-sm font-normal leading-none text-black"
+            >{{ work.from }} - {{ work.to }}</time
+          >
+          <h3 class="text-lg font-semibold text-black">{{ work.name }}</h3>
+          <h4 class="text-base font-semibold text-black">{{ work.organization }}</h4>
+          <div class="flex flex-row flex-wrap gap-4 my-1">
+                <div
+                  class=" px-1 font-bold text-black text-xs lg:text-base border-2 border-black text-center overflow-hidden"
+                  v-for="tag in work.tech_stack"
+                >
+                  {{ tag }}
+                </div>
+          </div>
+          <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+            {{ work.description }}
+          </p>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
-<style></style>
+<style scoped>
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-pink-700;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-pink-600;
+}
+</style>
