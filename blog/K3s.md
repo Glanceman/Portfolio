@@ -4,7 +4,7 @@
 
 ### 1. Setup master node
 
->``` curl -sfL https://get.k3s.io | sh -```
+``` curl -sfL https://get.k3s.io | sh -```
 1.  **`curl -sfL https://get.k3s.io`**:
     
     -   `curl`: This is a command-line tool used to transfer data from or to a server using various protocols (HTTP, HTTPS, FTP, etc.).
