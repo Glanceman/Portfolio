@@ -12,22 +12,11 @@ import os
 from pathlib import Path
 ```
 
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.743e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:09.542573&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:09.535830&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
-
 ## Multihead self-attention
 
 ![Multihead image](https://i.imgur.com/JqJVrsj.png)
 
-</div>
 
-<div class="cell code" execution_count="2"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:09.555704Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:09.555282Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:09.987776Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:09.986787Z&quot;}"
-papermill="{&quot;duration&quot;:0.441505,&quot;end_time&quot;:&quot;2024-05-27T07:18:09.989975&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:09.548470&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class MultiHeadAttention(nn.Module):
@@ -108,28 +97,15 @@ print(res.shape)
     
 ```
 
-<div class="output stream stdout">
-
+```
     torch.Size([2, 4, 8])
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:5.909e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.002090&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:09.996181&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Feed-Forward Network
 
-*F**F**N*(*X*) = *W*<sub>2</sub>*m**a**x*(0,*W*<sub>1</sub>*x*+*b*<sub>1</sub>) + *b*<sub>2</sub>
+$$ FFN(X) = W_{2}max(0,W_{1}x+b_{1})+b_{2} $$
 
-</div>
-
-<div class="cell code" execution_count="3"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.015204Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.014920Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:10.254214Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:10.253380Z&quot;}"
-papermill="{&quot;duration&quot;:0.248349,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.256470&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.008121&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class PositionWiseFeedForward(nn.Module):
@@ -156,7 +132,7 @@ res=pe(data)
 print(res.shape)
 ```
 
-<div class="output stream stdout">
+```
 
     [Parameter containing:
     tensor([[-0.1662,  0.5394, -0.0850],
@@ -168,38 +144,17 @@ print(res.shape)
     tensor([-0.2021, -0.1976,  0.0210], device='cuda:0', requires_grad=True)]
     torch.Size([2, 5, 3])
 
-</div>
+```
 
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:5.934e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.268678&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.262744&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Positional Encoding
 
-\\begin{align\*}
+$$ Even indices(2i) :  PE(pos,2i) = sin(\frac{pos}{1000^{\frac{2i}{d-model}}}) $$
 
-Even indices(2i) : PE(pos,2i) =
-sin(\\frac{pos}{1000^{\\frac{2i}{d-model}}})
+$$ Odd indices(2i+1) :  PE(pos,2i+1) = cos(\frac{pos}{1000^{\frac{2i}{d-model}}}) $$
 
-\\end{align\*}
 
-\\begin{align\*}
 
-Odd indices(2i+1) : PE(pos,2i+1) =
-cos(\\frac{pos}{1000^{\\frac{2i}{d-model}}})
-
-\\end{align\*}
-
-shape(pos,i)
-
-</div>
-
-<div class="cell code" execution_count="4"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.282002Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.281738Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:10.367023Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:10.366019Z&quot;}"
-papermill="{&quot;duration&quot;:9.415e-2,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.368968&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.274818&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class PositionalEncoding(nn.Module):
@@ -238,30 +193,20 @@ res=pe(data)
 print(res.shape)
 ```
 
-<div class="output stream stdout">
 
+
+```
     []
     torch.Size([2, 5, 784])
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.02e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.381135&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.375115&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Encoder Block
 
 ![Encode
 block](https://images.datacamp.com/image/upload/v1691083306/Figure_2_The_Encoder_part_of_the_transformer_network_Source_image_from_the_original_paper_b0e3ac40fa.png)
 
-</div>
 
-<div class="cell code" execution_count="5"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.396189Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.395229Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:10.442051Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:10.441238Z&quot;}"
-papermill="{&quot;duration&quot;:5.6788e-2,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.444443&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.387655&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class EncoderLayer(nn.Module):
@@ -293,29 +238,16 @@ res=encoder.forward(data,mask=None)
 print(res.shape)
 ```
 
-<div class="output stream stdout">
-
+```
     torch.Size([2, 5, 4])
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.399e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.457519&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.451120&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Decoder Block
 
 ![Decoder
 block](https://images.datacamp.com/image/upload/v1691083444/Figure_3_The_Decoder_part_of_the_Transformer_network_Souce_Image_from_the_original_paper_b90d9e7f66.png)
 
-</div>
-
-<div class="cell code" execution_count="6"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.472868Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.472534Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:10.497318Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:10.495993Z&quot;}"
-papermill="{&quot;duration&quot;:3.4738e-2,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.499313&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.464575&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class DecoderLayer(nn.Module):
@@ -351,28 +283,16 @@ res=decoder.forward(x=data[:2,:-1,:4],encoder_output=data,src_mask=None,tgt_mask
 print(res.shape)
 ```
 
-<div class="output stream stdout">
-
+```
     torch.Size([2, 4, 4])
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.378e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.512708&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.506330&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Transformer Model
 
 ![transformer](https://images.datacamp.com/image/upload/v1691083566/Figure_4_The_Transformer_Network_Source_Image_from_the_original_paper_120e177956.png)
 
-</div>
 
-<div class="cell code" execution_count="7"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.527105Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.526767Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:10.895492Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:10.894130Z&quot;}"
-papermill="{&quot;duration&quot;:0.378645,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.897915&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.519270&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 class Transformer(nn.Module):
@@ -462,27 +382,19 @@ res=model(src=src,tgt=tgt)
 print(res.shape)
 ```
 
-<div class="output stream stdout">
-
+```
     torch.Size([8, 350]) torch.Size([8, 350])
     torch.Size([8, 350, 255])
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:7.33e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:10.913072&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.905742&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Training
 
-</div>
+Training: Non Auto regressive
 
-<div class="cell code" execution_count="8"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:10.929555Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:10.929180Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:12.554044Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:12.552800Z&quot;}"
-papermill="{&quot;duration&quot;:1.635598,&quot;end_time&quot;:&quot;2024-05-27T07:18:12.556207&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:10.920609&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
+Inference: Auto Regressive with Greedy Search (Pick the higher probability item) Alternative: Beam Search
+
+
 
 ``` python
 import torch.optim as optim
@@ -538,30 +450,18 @@ with torch.no_grad():
 
 ```
 
-<div class="output stream stdout">
-
+```
     Epoch: 1, Loss: 8.680485725402832
     Epoch: 2, Loss: 8.536981582641602
     Validation Loss: 8.670391082763672
+```
 
-</div>
-
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.475e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:12.570408&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:12.563933&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ## Opus dataset
 
 <https://huggingface.co/datasets/Helsinki-NLP/opus-100/viewer/en-zh>
 
-</div>
 
-<div class="cell code" execution_count="9"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:12.585152Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:12.584873Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:22.876729Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:22.875849Z&quot;}"
-papermill="{&quot;duration&quot;:10.301929,&quot;end_time&quot;:&quot;2024-05-27T07:18:22.878956&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:12.577027&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 from torch.utils.data import random_split, DataLoader,Dataset
@@ -715,28 +615,15 @@ def get_ds(config): # get dataset
 
 ```
 
-<div class="output stream stderr">
+```
 
     2024-05-27 07:18:15.062993: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
     2024-05-27 07:18:15.063089: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
     2024-05-27 07:18:15.190070: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
 
-</div>
+```
 
-</div>
-
-<div class="cell markdown"
-papermill="{&quot;duration&quot;:6.798e-3,&quot;end_time&quot;:&quot;2024-05-27T07:18:22.892911&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:22.886113&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
-
-## config
-
-</div>
-
-<div class="cell code" execution_count="10"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:22.907613Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:22.907099Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:22.914950Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:22.914135Z&quot;}"
-papermill="{&quot;duration&quot;:1.7306e-2,&quot;end_time&quot;:&quot;2024-05-27T07:18:22.916867&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:22.899561&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
+## Config
 
 ``` python
 def get_config():
@@ -773,12 +660,7 @@ def latest_weights_file_path(config):
     return str(weights_files[-1])
 ```
 
-</div>
 
-<div class="cell code" execution_count="11"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:22.931676Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:22.931002Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T07:18:22.944214Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T07:18:22.943441Z&quot;}"
-papermill="{&quot;duration&quot;:2.2561e-2,&quot;end_time&quot;:&quot;2024-05-27T07:18:22.946096&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:22.923535&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 #Validation code
@@ -858,12 +740,6 @@ def run_validation(model, validation_ds, tokenizer_src, tokenizer_tgt, max_len, 
     
 ```
 
-</div>
-
-<div class="cell code" execution_count="12"
-execution="{&quot;iopub.execute_input&quot;:&quot;2024-05-27T07:18:22.960698Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-05-27T07:18:22.960404Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-05-27T11:27:22.250202Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-05-27T11:27:22.249142Z&quot;}"
-papermill="{&quot;duration&quot;:14939.300308,&quot;end_time&quot;:&quot;2024-05-27T11:27:22.253043&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-05-27T07:18:22.952735&quot;,&quot;status&quot;:&quot;completed&quot;}"
-tags="[]">
 
 ``` python
 config = get_config()
@@ -952,50 +828,13 @@ for epoch in range(initial_epoch, config['num_epochs']):
 
 ```
 
-<div class="output stream stdout">
-
+``` text 
     Using device: cuda
-
-</div>
-
-<div class="output display_data">
-
-``` json
-{"model_id":"549969cd8d3544d4b0e5a731f316ec45","version_major":2,"version_minor":0}
-```
-
-</div>
-
-<div class="output stream stderr">
-
     Downloading data: 100%|██████████| 5.73M/5.73M [00:00<00:00, 20.5MB/s]
-
-</div>
-
-<div class="output display_data">
-
-``` json
-{"model_id":"51af7ef42010431f84d8b2cff5d9219f","version_major":2,"version_minor":0}
-```
-
-</div>
-
-<div class="output stream stdout">
-
     Max length of source sentence: 309
     Max length of target sentence: 274
     No model to preload, starting from scratch
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 00: 100%|██████████| 910/910 [09:53<00:00,  1.53it/s, loss=5.778]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: There must be some misunderstanding!' said Oblonsky.
         TARGET: Qui c’è un equivoco — egli disse.
@@ -1005,17 +844,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Stavo trattando per il frumento, offrivo dei bei soldi, io.
      PREDICTED: — Io non posso nulla di lui e lo posso un ’ altra .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 01: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=5.555]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Once he dined there, and the other time he spent an evening with some visitors, but he had not once stayed the night, as he used to do in former years.
         TARGET: Una volta vi aveva pranzato, un’altra volta aveva passato la serata con ospiti, ma non vi aveva neanche una volta passato la notte, come era solito fare gli anni precedenti.
@@ -1025,17 +854,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Chiusi la scuola di Morton avendo cura che la separazione, almeno da parte mia, non riuscisse sterile.
      PREDICTED: Io ho detto che non ho detto che la mia vita non mi .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 02: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=5.439]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: 'And is it true that his wife is here?'
         TARGET: — Ma è vero che la Karenina è qui?
@@ -1045,17 +864,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Occupando già da tre anni il posto di capo di uno degli uffici amministrativi di Mosca, Stepan Arkad’ic aveva conquistato, oltre la simpatia, la stima dei colleghi, dei dipendenti, dei superiori, e di tutti coloro che avevano a che fare con lui.
      PREDICTED: Era il vecchio principe che Stepan Arkad ’ ic era stato stato stato stato da Mosca , e non solo solo non solo , ma , per lui , per lui , aveva fatto tutto quello che gli aveva fatto tutto quello che gli aveva fatto tutto .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 03: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=5.253]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: 'Yes we must go away.
         TARGET: — Sì, bisogna partire.
@@ -1065,17 +874,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: E a un tratto lo afferrò una strana sensazione.
      PREDICTED: E subito subito subito una volta , lo guardò .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 04: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=4.306]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: You can whistle till you nearly burst your boiler before they will trouble themselves to hurry.
         TARGET: Potete fischiare fino a far scoppiar la caldaia, prima che si scomodino a tirarsi da parte.
@@ -1085,17 +884,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Andò giù a passi svelti: sentiva di dover agire, ma non sapeva come.
      PREDICTED: Egli si avvicinò che cosa si qualcosa , non sapeva cosa .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 05: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=4.843]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: "Who are you?" looking at me with surprise and a sort of alarm, but still not wildly.
         TARGET: Poi mi fissò con uno sguardo meravigliato, sgomento, ma non smarrito.
@@ -1105,17 +894,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: — Di' come ti pare, — rispose il Gatto. — Vai oggi dalla Regina a giocare a croquet?
      PREDICTED: — E che cosa avete detto — disse il Gatto . — Vi prego di Regina con la Regina ?
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 06: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=4.623]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: 'What are you talking about?' asked Oblonsky, entering the room from his study and addressing his wife.
         TARGET: — Che c’è — chiese Stepan Arkad’ic, venendo fuori dallo studio e rivolgendosi alla moglie.
@@ -1125,17 +904,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Errò, adunque, el duca in questa elezione; e fu cagione dell'ultima ruina sua.
      PREDICTED: E , adunque , nel suo stato , e fu la sua attenzione , fu la sua attenzione .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 07: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=4.264]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: He was not feeling at all tired and was only longing to work again and to accomplish as much as he could.
         TARGET: Non sentiva più nessuna stanchezza; voleva solo lavorare sempre più svelto e sempre di più.
@@ -1145,17 +914,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: “Perché è geloso — ella pensava. — Dio mio! com’è simpatico e sciocco!
      PREDICTED: “ Perché è proprio così !” pensava . — Ah , cara !
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 08: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.757]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Two feet off, you dimly observe a half-dressed ruffian, waiting to kill you, and you are preparing for a life-and-death struggle with him, when it begins to dawn upon you that it's Jim.
         TARGET: Un paio di metri lontano, scorgete oscuramente un brigante seminudo che aspetta per ammazzarvi, e vi preparate per una lotta a sangue, quando comincia a balenarvi in niente che sia l’amico Gianni.
@@ -1165,17 +924,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Il cavallo non era ancora pronto, ma, sentendo in sé un particolare tendersi delle forze fisiche e dell’attenzione verso quello che bisognava fare, per non perdere neanche un minuto, senza aspettare il cavallo, uscì a piedi e ordinò a Kuz’ma di raggiungerlo.
      PREDICTED: Il cavallo non era ancora pronta , ma , in particolare , e , , si a quello che non voleva , non si , ma che non si avvicinava , si , si avvicinò alla gamba , e si mise a .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 09: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.632]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: It had lost half its tail, one of its ears, and a fairly appreciable proportion of its nose.
         TARGET: Aveva perduto la coda, un orecchio, e una parte del naso.
@@ -1185,17 +934,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Ma Serëza, pur avendo sentito la voce fiacca dell’istitutore, non vi fece attenzione.
      PREDICTED: Ma Serëza , pur senza sentire la voce di Serëza , non aveva nessuna voce di .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 10: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=4.139]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: "The carrier, no doubt," I thought, and ran downstairs without inquiry.
         TARGET: — Il vetturino, — pensai, e scesi subito.
@@ -1205,17 +944,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: — Signore, vi sentite calmo e felice?
      PREDICTED: — Volete bene , signore ?
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 11: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.464]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: However, his father did not make him repeat it, but went on to the lesson from the Old Testament.
         TARGET: Ma il padre non lo costrinse a ripetere e passò alla lezione sull’Antico Testamento.
@@ -1225,17 +954,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: VIII
      PREDICTED: VIII
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 12: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.671]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Supposing you came to dinner to-day?
         TARGET: Magari oggi a pranzo.
@@ -1245,17 +964,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: “Perché è geloso — ella pensava. — Dio mio! com’è simpatico e sciocco!
      PREDICTED: “ Ma lui è un ’ altra cosa !” ella pensava . — Ah , Dio mio , Dio mio , Dio mio , che fa bene !
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 13: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.499]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: 'What can I write?' she thought. 'What can I decide alone?
         TARGET: «Che posso scrivere? — pensava. — Che posso decidere da sola?
@@ -1265,17 +974,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Questo lo sapeva fermamente e lo sapeva da gran tempo, da quando aveva cominciato a dipingerlo; ma i giudizi degli altri, quali che fossero, avevano tuttavia per lui un’importanza enorme e lo agitavano fino in fondo all’anima.
      PREDICTED: S ’ egli era fermamente convinto che , ed era stata mai stata da tanto tempo , egli era ancora convinto di aver avuto l ’ opinione pubblica , e gli sembrava di essere di questa conoscenza di un grande importanza , l ’ importanza dell ’ anima lo amava .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 14: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=3.405]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: And it was after long searching that I found out the carpenter’s chest, which was, indeed, a very useful prize to me, and much more valuable than a shipload of gold would have been at that time.
         TARGET: Di fatto dopo lunghe ricerche trovai la cassa del carpentiere più preziosa all’uso mio in quel momento, che nol sarebbe stato un galeone carico d’oro.
@@ -1285,17 +984,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Il signor Rochester avvicinò la candela e in quella testa pallida e inanimata riconobbi il signor Mason. Vidi che gli asciugamani che gli coprivano un braccio e un fianco erano intrisi di sangue.
      PREDICTED: Il signor Rochester lo vidi dietro a quella candela , e mi misi a pronunziare il volto pallido e a Mason , vidi il signor Mason e vidi una sola volta sul suo sangue .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 15: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.900]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: These he read in the ante-room, so as not to let them divert his attention later on.
         TARGET: Levin, proprio lì in anticamera, per non dimenticarsene poi, le lesse.
@@ -1305,17 +994,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Dall’altra parte! — disse con stizza a Varen’ka che le avvolgeva le gambe nello scialle non precisamente come voleva lei.
      PREDICTED: che , fianco , non era al Varen ’ ka che , non era con gli zoccoli , si voltò a destra e destra .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 16: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=3.443]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Karenin was going to mention the bill that had been brought him, but his voice shook and he paused.
         TARGET: — Aleksej Aleksandrovic voleva dire del conto che gli avevano portato, ma la voce cominciò a tremare ed egli si fermò.
@@ -1325,17 +1004,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: A passi leggeri si avvicinò svelta al lettuccio del malato e, accostandosi in modo che egli non avesse da voltare il capo, prese subito nella sua mano fresca, giovane, lo scheletro enorme della mano di lui, la strinse e, con quella sommessa animazione compassionevole, ma non offensiva, propria solo delle donne, cominciò a parlare con lui.
      PREDICTED: Con la solita piccola costituzione verso il letto , andò a voltarsi verso il capo , e poi , , non si mise a ridere con la testa in testa , e con la testa , , e con un giovane , che , senza volere si , cominciò a parlare di non altro che ella cominciò a parlare .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 17: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=3.357]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: He lifted his hand and opened his eyelids; gazed blank, and with a straining effort, on the sky, and toward the amphitheatre of trees: one saw that all to him was void darkness.
         TARGET: Si fermò, non sapendo da qual lato volgere, stese la mano, sollevò le palpebre, guardò intorno a sé e facendo uno sforzo diresse gli occhi verso gli alberi e il cielo.
@@ -1345,17 +1014,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: — Sì, — rispose Alice, ma un po' incerta: — significa... rendere... qualche cosa... più bella.
      PREDICTED: — Sì , — disse Alice ; — per fare qualche cosa , fare il , tutto è vero .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 18: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=3.196]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: And she was surprised that formerly this had seemed impossible to her, and laughingly explained to them how much simpler it really was, and that they were both now contented and happy.
         TARGET: Ed ella stupiva come questo le fosse apparso prima impossibile, e spiegava loro, ridendo, che era molto più semplice, e che ora entrambi erano felici e contenti.
@@ -1365,17 +1024,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: gli occhi di questa "Stella Vespertina" avete dovuto vederli in sogno.
      PREDICTED: Questi occhi , se siete stata l ’ aria un sogno .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 19: 100%|██████████| 910/910 [09:55<00:00,  1.53it/s, loss=2.762]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: "It would be so much better," she said, "if she could only get out of the way for a month or two, till all was over."
         TARGET: "Sarebbe meglio per me, — diceva, — che me ne andassi per un mese o due finché tutto non sarà finito."
@@ -1385,17 +1034,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Giunto di corsa fino a lei, le si appese al collo.
      PREDICTED: Mamma alla fine , egli la prese a guardare intorno a sé .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 20: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.944]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Koznyshev was talking to Dolly, jokingly assuring her that the custom of going away after the wedding was spreading because newly-married couples always felt rather uncomfortable.
         TARGET: Sergej Ivanovic parlava con Dar’ja Dmitrievna, sostenendo per scherzo che l’usanza di partire dopo il matrimonio è diffusa perché gli sposi novelli si vergognano sempre un poco.
@@ -1405,17 +1044,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Invece di sognare il mio paese, ero meravigliata che un uomo che amava il bene potesse commettere tante ingiustizie e pazzie, come quel Carlo I. Pensavo che è triste con quella integrità e quella coscienza di non ammetter nulla all'infuori dell'autorità.
      PREDICTED: Il pomeriggio di un pomeriggio di , fui chiesto come io potevo un uomo di , e mi pareva che la voglia dovesse fare ogni momento che non facesse più , e mi parve un ' onda che la testa non potesse veder più la sua attenzione .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 21: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.602]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: The soldiers were silent, and looked at Alice, as the question was evidently meant for her.
         TARGET: I soldati tacevano e guardavano Alice, pensando che la domanda fosse rivolta a lei.
@@ -1425,17 +1054,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Tutta la serata Dolly fu, come al solito, leggermente canzonatoria col marito, e Stepan Arkad’ic contento e allegro, ma non tanto da apparire, dopo il perdono, dimentico della propria colpa.
      PREDICTED: Tutta quella sera , Dolly le sue forze verso la sua abituale , verso il tono canzonatorio , Stepan Arkad ’ ic era allegro e allegro che non e non cessava di , ma dopo il suo perdono .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 22: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.589]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: The landowner looked at him.
         TARGET: Il proprietario lo guardò.
@@ -1445,17 +1064,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Perfino nei particolari Sergej Ivanovic trovava in lei tutto quello che avrebbe desiderato in una moglie: era povera e sola, sicché non avrebbe portato con sé un nugolo di parenti e la loro influenza in casa del marito, come egli vedeva nel caso di Kitty; ma avrebbe dovuto tutto al marito, cosa ch’egli aveva sempre desiderato per la propria futura vita familiare.
      PREDICTED: E , per andare a Sergej Ivanovic , trovava tutto quello che aveva , nei momenti penosi , e nella mente era così poco : nel marito , non avrebbe parlato a una casa , e i rapporti con i parenti e i parenti della signora Stahl , vedeva una cosa che , invece , era sempre , tuttavia nelle sue supposizioni della sua vita , sempre qualcosa di contrario .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 23: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.687]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: 'You have only taken an idea from others, and distorted it, and you wish to apply it where it is inapplicable.'
         TARGET: — Tu hai preso soltanto un’idea non tua, poi l’hai fatta diventar mostruosa e vuoi applicarla all’inapplicabile.
@@ -1465,17 +1074,7 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Realmente egli era contrariato, non che se ne andassero molti denari, ma che gli si ricordasse quello che lui, sapendo che v’era qualcosa che non andava, voleva dimenticare.
      PREDICTED: Era davvero disteso , non perché avevano passato tanto bene quanto era stato d ’ animo ; e sapendo che qualche cosa di sapere bene non voleva bene a nulla .
     --------------------------------------------------------------------------------
-
-</div>
-
-<div class="output stream stderr">
-
     Processing Epoch 24: 100%|██████████| 910/910 [09:54<00:00,  1.53it/s, loss=2.881]
-
-</div>
-
-<div class="output stream stdout">
-
     --------------------------------------------------------------------------------
         SOURCE: Now, what do you think?
         TARGET: Dimmi, come credi tu?
@@ -1485,7 +1084,4 @@ for epoch in range(initial_epoch, config['num_epochs']):
         TARGET: Poi si udì: «in sella!».
      PREDICTED: L ' ordine era data .
     --------------------------------------------------------------------------------
-
-</div>
-
-</div>
+```

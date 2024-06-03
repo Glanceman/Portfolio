@@ -1,9 +1,10 @@
 <script setup>
 import MarkdownIt from 'markdown-it'
+import mk from "markdown-it-katex"
 import { ref, onMounted } from 'vue'
 import markdownTable from '/public/blog/markdownTable.json'
 import { getUrl } from '@/assets/tools.js'
-//import sample from "@/assets/K3s.md"
+
 
 let table = ref([])
 table.value = markdownTable
@@ -12,15 +13,17 @@ console.log(table.value)
 
 let res = ref('')
 
+const markdown = new MarkdownIt({
+    linkify: true,
+    typographer: true
+  })
+markdown.use(mk)
+
 async function diplayMDContent(fileName) {
   let url = getUrl('/blog/' + fileName)
   console.log(url)
   const file = await fetch(url)
   let content = await file.text()
-  const markdown = new MarkdownIt({
-    linkify: true,
-    typographer: true
-  })
   res.value = markdown.render(content)
 }
 
@@ -55,7 +58,7 @@ onMounted(() => {
 
     <div class="w-full bg-gray-50 overflow-auto p-4 sm:col-span-5">
 
-        <div class="prose-sm lg:prose-xl" v-html="res" />
+        <div class="prose-sm sm:prose-base prose-a:text-blue-600 prose-pre:bg-gray-300 prose-pre:overflow-auto prose-p:m-1" v-html="res" />
 
     </div>
   </div>
@@ -81,7 +84,5 @@ onMounted(() => {
   @apply bg-pink-600;
 }
 
-code{
-    background-color: bisque;
-}
 </style>
+
