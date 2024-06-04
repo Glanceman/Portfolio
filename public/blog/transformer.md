@@ -1,3 +1,15 @@
+# Transformer
+
+Paper:
+[Attention is all you need](https://arxiv.org/pdf/1706.03762)
+
+Reference:
+1. https://www.datacamp.com/tutorial/building-a-transformer-with-py-torch
+2. https://www.bilibili.com/video/BV1cV411X7XN/?p=4&spm_id_from=333.880.my_history.page.click&vd_source=0fa5f52ededc59cf134dc8e9b235e069
+3. https://www.kaggle.com/code/arunmohan003/transformer-from-scratch-using-pytorch
+4. https://www.kaggle.com/code/lusfernandotorres/transformer-from-scratch-with-pytorch
+
+[Download Notebook](https://github.com/Glanceman/Python-Learning/blob/master/Transformer/transformer.ipynb)
 
 ``` python
 import torch
@@ -149,6 +161,15 @@ print(res.shape)
 
 ## Positional Encoding
 
+Given Data shape = [ seq_length, d_model ]
+
+>Data = [ [ 0, 1, 2, ...**d_model** ], [...], ...**seq_length** ]
+
+>PE = [ [ PE( 0, 0 ), PE( 0, 2(0)+1 ), PE( pos, 2(1) ), ...**i** ], [ PE( 1, 0 ) ], ...**pos** ]
+
+result = Data+ PE
+
+
 $$ Even indices(2i) :  PE(pos,2i) = sin(\frac{pos}{1000^{\frac{2i}{d-model}}}) $$
 
 $$ Odd indices(2i+1) :  PE(pos,2i+1) = cos(\frac{pos}{1000^{\frac{2i}{d-model}}}) $$
@@ -164,7 +185,7 @@ class PositionalEncoding(nn.Module):
         pe = torch.zeros(seq_length, d_model)
         position = torch.arange(0, seq_length, dtype=torch.float).unsqueeze(1) #[0,1,2,3,4,...]
         # Creating the division term for the positional encoding formula
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        div_term = torch.exp( torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model) )
 
         EvenIndexSize = int(d_model/2)
         OddIndexSize = int(math.ceil((d_model-1)/2))

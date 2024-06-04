@@ -4,7 +4,7 @@
 
 ### 1. Setup master node
 
-``` curl -sfL https://get.k3s.io | sh -```
+> curl -sfL https://get.k3s.io | sh -
 1.  **`curl -sfL https://get.k3s.io`**:
     
     -   `curl`: This is a command-line tool used to transfer data from or to a server using various protocols (HTTP, HTTPS, FTP, etc.).
@@ -20,7 +20,7 @@
     -   So, the entire command sequence fetches the K3s installation script from the specified URL and pipes it to the shell (`sh`) for execution.
 
 ### 2. Setup Agent node
-```curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://k3s.example.com --token mypassword" sh -s -```
+>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent --server https://k3s.example.com --token mypassword" sh -s -
 
 ---
 ##  Useful Commands
@@ -28,17 +28,19 @@
 ### Node and Pod
 
 **List all nodes:**
-``` kubectl get node```
+> kubectl get node
 
 **List all Pod**
-``` kubectl get pod```
+> kubectl get pod
 
 **Check Token (Default)**
-Server : ``` cat /var/lib/rancher/k3s/server/token```
-Agent : ``` cat /var/lib/rancher/k3s/server/agent-token```
+
+Server : `cat /var/lib/rancher/k3s/server/token`
+
+Agent : `cat /var/lib/rancher/k3s/server/agent-token`
 
 **Change Hostname**
-```hostnamectl set-hostname master```
+`hostnamectl set-hostname master`
 
 **Create Pod**
 `kubectl run <podname> --image=<image name>`

@@ -6,5 +6,9 @@
     {
         "name":"Transformer",
         "file":"transformer.md"
+    },
+    {
+        "name":"Vision Transformer",
+        "file":"vision-transformer(scratch).md"
     }
 ]
