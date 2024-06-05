@@ -5,10 +5,10 @@ import historyEvents from '@/assets/historyEvent.json'
 
 // Get Work exp
 let workHistory = historyEvents.filter((e) => e.type === 'Work')
-console.log(workHistory)
+
 
 let educationHistory = historyEvents.filter((e) => e.type === 'Education')
-console.log(educationHistory)
+
 </script>
 
 <template>
@@ -27,13 +27,13 @@ console.log(educationHistory)
         <div class="md:w-2/3 max-sm:w-full p-4 h-full mx-auto">
           <div class="w-full">
             <div class="w-fit my-1 py-1">
-              <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
+              <h2 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
                   class="block absolute bg-pink-700 w-[110%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite]"
                 >
                 </span>
                 Introduction
-              </h1>
+              </h2>
             </div>
             <p class="text-black mb-4">
               Welcome to my portfolio website! I am a creative meida student with a passion for
@@ -45,15 +45,15 @@ console.log(educationHistory)
           </div>
           <div class="w-full">
             <div class="w-fit my-1 py-1">
-              <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
+              <h2 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
                   class="block absolute bg-pink-700 w-[110%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite]"
                 >
                 </span>
                 Skills
-              </h1>
+              </h2>
             </div>
-            <div class="text-2x1 font-bold">Programming languages</div>
+            <h3 class="text-2x1 font-bold">Programming languages</h3>
             <ul class="flex flex-wrap space-x-2">
               <li>
                 <IconCard ImagePath="/image/C++.png" Word="C++" />
@@ -74,7 +74,7 @@ console.log(educationHistory)
                 <IconCard ImagePath="/image/Python.png" Word="Python" />
               </li>
             </ul>
-            <div class="text-2x1 font-bold">Framework</div>
+            <h3 class="text-2x1 font-bold">Framework</h3>
             <ul class="flex flex-wrap space-x-2">
               <li>
                 <IconCard ImagePath="/image/UE5.png" Word="UE5" />
@@ -95,13 +95,13 @@ console.log(educationHistory)
           </div>
           <div class="w-full">
             <div class="w-fit my-1 py-1">
-              <h1 class="relative text-3xl w-fit font-extrabold text-black z-10">
+              <h2 class="relative text-3xl w-fit font-extrabold text-black z-10">
                 <span
                   class="block absolute bg-pink-700 w-[110%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite]"
                 >
                 </span>
                 Contact
-              </h1>
+              </h2>
             </div>
             <p class="text-black mb-4 hover:text-pink-600 font-extrabold">
               Email: <a href="mailto: benxian456@gmail.com">benxian456@gmail.com</a>

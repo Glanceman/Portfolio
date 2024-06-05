@@ -7,15 +7,18 @@ import { getUrl } from '@/assets/tools.js'
 import hljs from 'highlight.js/lib/core'
 import python from 'highlight.js/lib/languages/python'
 import 'highlight.js/styles/atom-one-dark-reasonable.min.css'
+import MyButton from '../components/Reusable/MyButton.vue'
+
 
 hljs.registerLanguage('python', python)
 
+// get list of MDs
 let table = ref([])
 table.value = markdownTable
 
-console.log(table.value)
 
-let res = ref('')
+
+let menuOpen = ref(false)
 
 const markdown = new MarkdownIt({
   linkify: true,
@@ -32,18 +35,28 @@ const markdown = new MarkdownIt({
 })
 markdown.use(mk)
 
+let selectedMD = ref('')
+let htmlOfMD = ref('')
 async function diplayMDContent(fileName) {
   let url = getUrl('/blog/' + fileName)
-  console.log(url)
   const file = await fetch(url)
   let content = await file.text()
-  res.value = markdown.render(content)
+  htmlOfMD.value = markdown.render(content)
+}
+
+function selectedDisplayMD(file){
+  selectedMD.value = file
+  diplayMDContent(selectedMD.value.file)
+  //menuOpen.value=false
 }
 
 onMounted(() => {
-  // diplay the first content
-  diplayMDContent(table.value[0].file)
+  // select the first MD
+  selectedDisplayMD(table.value[0])
 })
+
+
+
 </script>
 
 <template>
@@ -53,27 +66,39 @@ onMounted(() => {
     data-aos-duration="1000"
   >
     <div class="bg-white w-full h-full col-span-1 overflow-x-hidden">
-      <div class=" text-3xl font-bold my-4 text-pink-600 text-center">Table</div>
+      <h1 class="max-sm:hidden text-3xl font-bold my-4 text-pink-600 text-center">Table</h1>
       <!-- for mobile-->
-      <div class=" hidden w-full sm:grid sm:grid-cols-1 grid-flow-row auto-rows-max gap-1 p-1">
-        <div
-          class="relative group inline-block px-4 py-2 text-black hover:text-white font-extrabold z-[0]"
-          v-for="record in table"
-          @click="() => diplayMDContent(record.file)"
-        >
-          <p class="text-center text-lg lg:text-xl">{{ record.name }}</p>
-          <span
-            class="block absolute group-hover:bg-black w-[100%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite] top-0 left-0"
-          >
-          </span>
-        </div>
+      <h1
+        :class="menuOpen? 'bg-pink-700 text-white':''"
+        class="sm:hidden text-3xl font-bold py-4 text-pink-600 text-center"
+        @click="() => (menuOpen = !menuOpen)"
+      >
+        {{ selectedMD.name }}
+      </h1>
+      <div
+        :class="
+          menuOpen
+            ? ' max-sm:grid max-sm:grid-cols-1 max-sm:absolute max-sm:bg-pink-700'
+            : 'max-sm:hidden'
+        "
+        class="hidden w-full sm:grid sm:grid-cols-1 grid-flow-row auto-rows-max gap-1 p-1"
+      >
+        <MyButton class="text-lg lg:text-xl" 
+        :isActivate="selectedMD.name ===record.name?true:false" :text="record.name" @click="() => selectedDisplayMD(record)" v-for="record in table"/>
+
       </div>
     </div>
 
     <div class="w-full bg-white overflow-auto p-4 sm:col-span-5">
       <div
-        class="prose-sm sm:prose-base prose-a:text-blue-600 prose-pre:bg-black prose-pre:rounded-none prose-pre:text-gray-300 prose-pre:overflow-auto prose-p:m-1 prose-hr:bg-black prose-hr:h-1 prose-h1:text-pink-600 prose-h2:text-pink-600 prose-blockquote:bg-slate-200 "
-        v-html="res"
+        class="prose-sm sm:prose-base 
+        prose-a:text-blue-600 prose-a:break-all
+        prose-pre:bg-black prose-pre:rounded-none prose-pre:text-gray-300 prose-pre:overflow-auto prose-p:m-1 
+        prose-hr:bg-black prose-hr:h-1 
+        prose-h1:text-pink-600 prose-h2:text-pink-600 
+        prose-blockquote:bg-slate-200 
+        prose-p:text-justify text-wrap"
+        v-html="htmlOfMD"
       />
     </div>
   </div>

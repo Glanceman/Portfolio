@@ -1,0 +1,33 @@
+<script setup>
+defineProps({
+  text: String,
+  isActivate:{
+    type:Boolean,
+    default:false
+  }
+})
+//const isActivate = defineModel('isActivate', { default: false })
+defineEmits(['click'])
+
+
+</script>
+
+<template>
+  <div
+    :class="isActivate === true? 'text-white' : 'text-black'"
+    class="w-full relative group inline-block px-4 py-2 hover:font-extrabold z-[0]"
+    @click="$emit('click')"
+  >
+    <p class="text-center">{{ text }}</p>
+    <span
+      :class="
+        isActivate === true
+          ? 'block absolute bg-black w-[100%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite] top-0 left-0'
+          : ' hidden'
+      "
+    >
+    </span>
+  </div>
+</template>
+
+<style scoped></style>
