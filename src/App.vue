@@ -25,18 +25,18 @@ const vResize = {
     })
   },
   unmounted: (el, binding, vnode, prevVnode) => {
-    console.log('unmounted')
+    //console.log('unmounted')
     window.removeEventListener('resize')
   }
 }
 
 function handleResize(width, height) {
-  console.log('trigger Resize', width, height)
+  //console.log('trigger Resize', width, height)
   offsetX.value = menu.value.root.offsetWidth + 'px'
 }
 
 function TriggerMenu() {
-  console.log('trigger')
+  //console.log('trigger')
   const pageComponent = page.value
   if (menuState.value == 'Close') {
     offsetX.value = Math.floor(menu.value.root.offsetWidth) + 'px'
@@ -46,8 +46,8 @@ function TriggerMenu() {
     menuState.value = 'Close'
     pageComponent.classList.remove('myTranslate')
   }
-  console.log(menu)
-  console.log(offsetX.value)
+  //console.log(menu)
+  //console.log(offsetX.value)
 }
 
 onMounted(() => {

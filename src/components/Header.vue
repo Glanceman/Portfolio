@@ -1,11 +1,17 @@
 s
 <script setup>
 import { ref } from 'vue'
-import router from '@/router/index.js'
+//import router from '@/router/index.js'
 import Footer from '@/components/Footer.vue'
-let routes = router.options.routes
+import { useRoute, useRouter } from 'vue-router'
+import MyButton from './Reusable/MyButton.vue'
 
+const router = useRouter()
+const route = useRoute()
+
+let routes = router.options.routes
 let root = ref(null)
+
 
 defineExpose({
   root
@@ -20,13 +26,12 @@ defineExpose({
   >
     <div class="flex flex-col w-[100%] h-[100%] place-content-between">
       <ul class="flex flex-col justify-center content-center justify-items-stretch">
-        <li v-for="route in routes">
-          <router-link :to="route.path" class="block hover:font-extrabold" aria-current="page">
-            <div class="text-center text-2xl p-1">
-              {{ route.name }}
-            </div>
-          </router-link>
+        
+        <li v-for="r in routes">
+          <MyButton class="text-2xl" 
+          :isActivate="route.path===r.path" :text="r.name" @click="router.push(r.path)"/>
         </li>
+
       </ul>
       <Footer />
     </div>
@@ -34,8 +39,5 @@ defineExpose({
 </template>
 
 <style scoped>
-#nav a.router-link-exact-active {
-  @apply dark:text-white text-white bg-black font-extrabold text-3xl animate-[myanimation_1s_linear_infinite];
-}
 
 </style>

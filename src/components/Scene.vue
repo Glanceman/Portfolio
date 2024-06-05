@@ -37,7 +37,7 @@ onMounted(async () => {
 
   const gltfLoader = new GLTFLoader()
   const url = getUrl('/model/thinking_spinning/scene.gltf')
-  console.log(url)
+  
   gltfLoader.load(url, (gltf) => {
     const root = gltf.scene
     model = root
