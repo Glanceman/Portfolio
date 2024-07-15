@@ -13,7 +13,8 @@ defineEmits(['click'])
 </script>
 
 <template>
-  <div
+  <button
+  type="button"
     :class="isActivate === true? 'text-white' : 'text-black'"
     class="w-full relative group inline-block px-4 py-2 hover:font-extrabold z-[0]"
     @click="$emit('click')"
@@ -27,7 +28,7 @@ defineEmits(['click'])
       "
     >
     </span>
-  </div>
+  </button>
 </template>
 
 <style scoped></style>
