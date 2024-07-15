@@ -10,5 +10,9 @@
     {
         "name":"Vision Transformer",
         "file":"vision-transformer(scratch).md"
+    },
+    {
+        "name":"C++ Remark",
+        "file":"C++ Remark.md"
     }
 ]

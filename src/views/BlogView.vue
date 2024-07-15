@@ -6,11 +6,16 @@ import markdownTable from '/public/blog/markdownTable.json'
 import { getUrl } from '@/assets/tools.js'
 import hljs from 'highlight.js/lib/core'
 import python from 'highlight.js/lib/languages/python'
+import cpp from 'highlight.js/lib/languages/cpp'
+import js from 'highlight.js/lib/languages/javascript'
 import 'highlight.js/styles/atom-one-dark-reasonable.min.css'
 import MyButton from '../components/Reusable/MyButton.vue'
 
 
+//registry
 hljs.registerLanguage('python', python)
+hljs.registerLanguage('cpp', cpp)
+hljs.registerLanguage('js', js)
 
 // get list of MDs
 let table = ref([])
