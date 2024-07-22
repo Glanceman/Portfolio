@@ -1,4 +1,4 @@
-import{g as dc}from"./tools-5db0268d.js";import{o as Ht,c as kt,a as Me,u as qi,t as Ct,r as ol,b as cl,_ as ll,d as Dt,F as ss,e as rs,f as fc,p as hl,g as ul,h as dl}from"./index-5ebe5ec6.js";const fl=["src"],pl={class:"text-back"},Ft={__name:"IconCard",props:["ImagePath","Word"],setup(s){const e=s;let t=e.ImagePath,n=e.Word;return(i,r)=>(Ht(),kt("div",null,[Me("img",{src:qi(dc)(qi(t)),class:"w-12 h-12"},null,8,fl),Me("p",pl,Ct(qi(n)),1)]))}};/**
+import{g as dc}from"./tools-5db0268d.js";import{o as Ht,c as kt,a as Me,u as qi,t as Ct,r as ol,b as cl,_ as ll,d as Dt,F as ss,e as rs,f as fc,p as hl,g as ul,h as dl}from"./index-27cc4a7a.js";const fl=["src"],pl={class:"text-back"},Ft={__name:"IconCard",props:["ImagePath","Word"],setup(s){const e=s;let t=e.ImagePath,n=e.Word;return(i,r)=>(Ht(),kt("div",null,[Me("img",{src:qi(dc)(qi(t)),class:"w-12 h-12"},null,8,fl),Me("p",pl,Ct(qi(n)),1)]))}};/**
  * @license
  * Copyright 2010-2024 Three.js Authors
  * SPDX-License-Identifier: MIT
