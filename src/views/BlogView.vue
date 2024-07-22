@@ -83,15 +83,16 @@ onMounted(() => {
       <div
         :class="
           menuOpen
-            ? ' max-sm:grid max-sm:grid-cols-1 max-sm:absolute max-sm:bg-pink-700'
-            : 'max-sm:hidden'
+            ? 'block max-sm:grid max-sm:grid-cols-1 max-sm:bg-pink-700'
+            : 'hidden'
         "
-        class="hidden w-full sm:grid sm:grid-cols-1 grid-flow-row auto-rows-max gap-1 p-1"
+        class="hidden absolute w-full sm:static sm:grid sm:grid-cols-1 grid-flow-row auto-rows-max gap-1 p-1"
       >
         <MyButton class="text-lg lg:text-xl" 
         :isActivate="selectedMD.name ===record.name?true:false" :text="record.name" @click="() => selectedDisplayMD(record)" v-for="record in table"/>
 
       </div>
+      <!-- for mobile-->
     </div>
 
     <div class="w-full bg-white overflow-auto p-4 sm:col-span-5">

@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class=" w-screen h-screen bg-gray-200 dark:bg-black">
+  <div class=" w-screen h-screen bg-black">
 
     <div class="w-[100%] h-[100%] flex flex-col justify-center">
       <video width="100%" height="100%" autoplay muted loop>
