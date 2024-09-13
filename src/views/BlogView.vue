@@ -82,16 +82,16 @@ onMounted(() => {
       </div>
     </header>
 
-    <main class="w-full flex flex-col">
+    <main class="w-full flex flex-col sm:flex-row">
       <!-- ^^^This detemine the height sticky need to look for this -->
       <aside
         :class="{
           'hidden sm:block': !menuOpen,
-          'block animate-[fadeIn_0.5s_linear]': menuOpen
+          'block sticky top-16 animate-[fadeIn_0.5s_linear]': menuOpen
         }"
-        class="w-full sticky top-16 flex-none sm:w-72 bg-gray-900"
+        class="w-full flex-none sm:w-72 bg-gray-900 sm:min-h-screen"
       >
-        <nav class="p-4">
+        <nav class="sm:sticky sm:top-16 p-4">
           <h2 class="text-2xl font-bold mb-4 text-pink-600 text-center">Table of Contents</h2>
           <div class="space-y-2">
             <MyButton
