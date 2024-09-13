@@ -59,54 +59,60 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    class="w-full h-full flex flex-col sm:flex-row sm:gap-2 overflow-y-auto"
-    data-aos="fade-up"
-    data-aos-duration="1000"
-  >
-    <div class="bg-white w-full sm:h-full sm:basis-1/6 justify-center max-sm:content-center">
-      <div class="max-sm:hidden">
-        <h1 class="text-3xl font-bold my-4 text-pink-600 text-center">Table</h1>
-        <MyButton
-          class="text-lg lg:text-xl"
-          :isActivate="selectedMD.name === record.name ? true : false"
-          :text="record.name"
-          @click="() => selectedDisplayMD(record)"
-          v-for="record in table"
-        />
+  <div class="min-h-screen bg-black text-white">
+    <header class="sticky top-0 z-40 bg-black border-b border-pink-600 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex gap-2 items-center">
+        <button @click="menuOpen = !menuOpen" class="sm:hidden text-pink-600 focus:outline-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+        <h1 class="text-2xl sm:text-3xl font-bold text-pink-600">{{ selectedMD.name }}</h1>
       </div>
-      <!-- display mobile-->
-      <div class="sm:hidden">
-        <h1
-          :class="menuOpen ? 'bg-pink-700 text-white' : ''"
-          class="sm:hidden text-3xl font-bold py-4 text-pink-600 text-center"
-          @click="() => (menuOpen = !menuOpen)"
-        >
-          {{ selectedMD.name }}
-        </h1>
+    </header>
 
-        <div
-          :class="menuOpen ? 'block max-sm:flex max-sm:flex-col max-sm:bg-pink-700' : 'hidden'"
-          class="hidden absolute w-full gap-1 p-1"
-        >
-          <MyButton
-            class="text-lg lg:text-xl"
-            :isActivate="selectedMD.name === record.name ? true : false"
-            :text="record.name"
-            @click="() => selectedDisplayMD(record)"
-            v-for="record in table"
-          />
-        </div>
+    <main class="w-full flex flex-col">
+      <!-- ^^^This detemine the height sticky need to look for this -->
+      <aside
+        :class="{
+          'hidden sm:block': !menuOpen,
+          'block animate-[fadeIn_0.5s_linear]': menuOpen
+        }"
+        class="w-full sticky top-16 flex-none sm:w-72 bg-gray-900"
+      >
+        <nav class="p-4">
+          <h2 class="text-2xl font-bold mb-4 text-pink-600 text-center">Table of Contents</h2>
+          <div class="space-y-2">
+            <MyButton
+              class="text-lg lg:text-xl"
+              v-for="record in table"
+              :isActivate="selectedMD.name === record.name ? true : false"
+              :text="record.name"
+              textColor="text-white"
+              activateTextColor="text-black"
+              windowColor="bg-pink-600"
+              @click="() => selectedDisplayMD(record)"
+            />
+          </div>
+        </nav>
+      </aside>
+      <div class="flex-grow p-4 sm:p-8">
+        <article class="w-full p-1 mx-auto">
+          <div class="prose prose-invert prose-pink max-w-none" v-html="htmlOfMD"></div>
+        </article>
       </div>
-      <!-- display mobile-->
-    </div>
-
-    <div class="w-full bg-white overflow-auto p-4 sm:basis-5/6">
-      <div
-        class="prose-sm sm:prose-base prose-a:text-blue-600 prose-a:break-all prose-pre:bg-black prose-pre:rounded-none prose-pre:text-gray-300 prose-pre:overflow-auto prose-p:m-1 prose-hr:bg-black prose-hr:h-1 prose-h1:text-pink-600 prose-h2:text-pink-600 prose-blockquote:bg-slate-200 prose-p:text-justify text-wrap"
-        v-html="htmlOfMD"
-      />
-    </div>
+    </main>
   </div>
 </template>
 
