@@ -1,21 +1,31 @@
 <script setup>
 defineProps({
   text: String,
-  isActivate:{
-    type:Boolean,
-    default:false
+  isActivate: {
+    type: Boolean,
+    default: false
+  },
+  textColor: {
+    type: String,
+    default: 'text-black'
+  },
+  activateTextColor: {
+    type: String,
+    default: 'text-white'
+  },
+  windowColor: {
+    type: String,
+    default: 'bg-black'
   }
 })
 //const isActivate = defineModel('isActivate', { default: false })
 defineEmits(['click'])
-
-
 </script>
 
 <template>
   <button
-  type="button"
-    :class="isActivate === true? 'text-white' : 'text-black'"
+    type="button"
+    :class="isActivate === true ? activateTextColor : textColor"
     class="w-full relative group inline-block px-4 py-2 hover:font-extrabold z-[0]"
     @click="$emit('click')"
   >
@@ -23,7 +33,8 @@ defineEmits(['click'])
     <span
       :class="
         isActivate === true
-          ? 'block absolute bg-black w-[100%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite] top-0 left-0'
+          ? 'block absolute w-[100%] h-[110%] z-[-1] animate-[myanimation_1s_linear_infinite] top-0 left-0 ' +
+            windowColor
           : ' hidden'
       "
     >
