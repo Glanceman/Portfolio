@@ -1,5 +1,12 @@
 [
     {
+        "name":"Real Time Stock Price Monitor",
+        "tag" :["Python","Streamlit"],
+        "description":"This project is going to show the technical analysis with the stock price",
+        "image":"/image/stock-price-monitor.png",
+        "link":"https://github.com/Glanceman/Real-Time-Stock-Price-Monitor"
+    },
+    {
         "name":"Networking",
         "tag" :["C++","CMAKE","ASIO","ProtoBuf","ImGUI"],
         "description":"This project is going to explore how to implement the network for connect two host.",
