@@ -46,7 +46,7 @@
         "tag" :["JS","P5JS","ML5.js"],
         "description":"A web-based interact music player built with P5.js , ML5.js.",
         "image":"/image/Project3.png",
-        "link":"https://glanceman.github.io/SM2278-EnhancedMusicPlayer/"
+        "link":"https://glanceman.github.io/EnhancedMusicPlayer/public/index.html"
     },
     {
         "name":"Smart Telemedic",
