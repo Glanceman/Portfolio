@@ -89,7 +89,7 @@ onMounted(() => {
           'hidden sm:block': !menuOpen,
           'block sticky top-16 animate-[fadeIn_0.5s_linear]': menuOpen
         }"
-        class="w-full flex-none sm:w-72 bg-gray-900 sm:min-h-screen"
+        class="w-full flex-none bg-gray-900 sm:w-72 sm:min-h-screen"
       >
         <nav class="sm:sticky sm:top-16 p-4">
           <h2 class="text-2xl font-bold mb-4 text-pink-600 text-center">Table of Contents</h2>
@@ -107,11 +107,9 @@ onMounted(() => {
           </div>
         </nav>
       </aside>
-      <div class="flex-grow p-4 sm:p-8">
-        <article class="w-full p-1 mx-auto">
-          <div class="prose prose-invert prose-pink max-w-none" v-html="htmlOfMD"></div>
-        </article>
-      </div>
+      <article class="p-2 sm:p-4 min-w-0">
+        <div class="prose prose-invert prose-pink max-w-none" v-html="htmlOfMD"></div>
+      </article>
     </main>
   </div>
 </template>
