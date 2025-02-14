@@ -18,7 +18,7 @@ defineExpose({
 </script>
 
 <template>
-  <nav ref="root" id="nav" class="h-screen w-1/2 max-w-screen-sm min-w-min bg-pink-700">
+  <nav ref="root" id="nav" class="h-screen w-1/2 max-w-(--breakpoint-sm) min-w-min bg-pink-700">
     <div class="w-full h-full px-2 py-2.5">
       <div class="flex flex-col w-[100%] h-[100%] place-content-between">
         <ul class="flex flex-col justify-center content-center justify-items-stretch">

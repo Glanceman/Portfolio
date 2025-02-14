@@ -26,7 +26,7 @@ defineEmits(['click'])
   <button
     type="button"
     :class="isActivate === true ? activateTextColor : textColor"
-    class="w-full relative group inline-block px-4 py-2 hover:font-extrabold z-[0]"
+    class="w-full relative group inline-block px-4 py-2 hover:font-extrabold z-0"
     @click="$emit('click')"
   >
     <p class="text-center">{{ text }}</p>
