@@ -1,5 +1,19 @@
 [
     {
+        "name":"Directory-Comparer",
+        "tag" :["JS","Vue3","Electron","TailwindCSS","Shadcn"],
+        "description":"Used to find out the files with different content in two similar folder",
+        "image":"/image/directory-comparer.png",
+        "link":"https://github.com/Glanceman/directory-comparer"
+    },
+    {
+        "name":"data-displayer",
+        "tag" :["JS","Vue3","BunJS","NodeJS","Docker","TailwindCSS","Shadcn"],
+        "description":"Used to view the data flow of application",
+        "image":"/image/data-displayer.png",
+        "link":"https://github.com/Glanceman/data-displayer"
+    },
+    {
         "name":"Real Time Stock Price Monitor",
         "tag" :["Python","Streamlit"],
         "description":"This project is going to show the technical analysis with the stock price",

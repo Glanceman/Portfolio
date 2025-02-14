@@ -76,7 +76,7 @@ let educationHistory = historyEvents.filter((e) => e.type === 'Education')
           <h4 className="text-base font-semibold text-pink-400">{{ education.organization }}</h4>
           <div class="flex flex-wrap gap-2 my-2">
             <div
-              class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
+              class="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
               v-for="tag in education.tech_stack"
             >
               {{ tag }}
@@ -101,7 +101,7 @@ let educationHistory = historyEvents.filter((e) => e.type === 'Education')
           <h4 className="text-base font-semibold text-pink-400">{{ work.organization }}</h4>
           <div class="flex flex-wrap gap-2 my-2">
             <div
-              class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
+              class="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
               v-for="tag in work.tech_stack"
             >
               {{ tag }}
@@ -151,6 +151,8 @@ let educationHistory = historyEvents.filter((e) => e.type === 'Education')
 </template>
 
 <style scoped>
+@reference "../assets/main.css";
+
 ::-webkit-scrollbar {
   width: 15px;
 }
