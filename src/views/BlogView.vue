@@ -2,7 +2,7 @@
 import MarkdownIt from 'markdown-it'
 import mk from 'markdown-it-katex'
 import { ref, onMounted } from 'vue'
-import markdownTable from '/public/blog/markdownTable.json'
+import markdownTable from '@/assets/blogIndex.json'
 import { getUrl } from '@/assets/tools.js'
 import hljs from 'highlight.js/lib/core'
 import python from 'highlight.js/lib/languages/python'

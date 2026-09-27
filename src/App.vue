@@ -148,10 +148,19 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
+/*
+ * `forwards`, not `both`.
+ *
+ * `both` applies the 0% keyframe (opacity 0) during the animation's backwards
+ * phase — so if an enter transition is ever interrupted or never starts, the
+ * view is left permanently invisible with no way to recover. `forwards` only
+ * holds the END state, so the element is visible by default and the animation
+ * is pure decoration on top.
+ */
 .p5-view-enter-active {
-  animation: p5-rise 0.45s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  animation: p5-rise 0.45s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
 }
 .p5-view-leave-active {
-  animation: p5-fade 0.16s linear both;
+  animation: p5-fade 0.16s linear forwards;
 }
 </style>

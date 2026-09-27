@@ -877,10 +877,11 @@
 
   /* entrance */
   .p5-rise {
-    animation: p5-rise 0.55s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    /* `forwards` not `both`: never leave an element stuck at opacity 0 */
+    animation: p5-rise 0.55s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
   }
   .p5-fade {
-    animation: p5-fade 0.5s linear both;
+    animation: p5-fade 0.5s linear forwards;
   }
 
   .typed-cursor {
