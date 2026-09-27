@@ -108,6 +108,24 @@ src/components/
     └── TimelineList.vue    education / work spine
 ```
 
+### Trap: never put `mode="out-in"` on the RouterView `<Transition>`
+
+`src/App.vue` uses the default simultaneous mode on purpose. Adding
+`mode="out-in"` breaks every **lazy-loaded** route — home keeps working, and
+every other tab renders nothing at all.
+
+vue-router hands the `<RouterView>` slot a **pre-created VNode**, not a
+component definition. `Transition` in `out-in` mode renders a placeholder while
+the old child leaves and swaps the new one in on the next tick, which leaves it
+holding an `undefined` child:
+
+```
+WARN Invalid vnode type when creating vnode: undefined.
+```
+
+The default mode is correct for a VNode child, and an overlapping cut is the
+more P5 transition anyway.
+
 ---
 
 ## Accessibility & motion

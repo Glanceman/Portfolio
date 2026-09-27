@@ -128,8 +128,18 @@ onBeforeUnmount(() => {
     :class="menuOpen ? '-translate-x-[24%] lg:translate-x-0' : 'translate-x-0'"
   >
     <main class="min-h-screen lg:pl-rail">
+      <!--
+        NOTE: do NOT add mode="out-in" here.
+        vue-router hands the slot a pre-created VNode rather than a component
+        definition. Transition's out-in mode renders a placeholder during the
+        leave phase and swaps on the next tick, which hands Transition an
+        `undefined` child — the route then renders nothing at all and the
+        console fills with "Invalid vnode type when creating vnode: undefined".
+        The default simultaneous mode is correct for a VNode child, and an
+        overlapping cut is the more P5 transition anyway.
+      -->
       <RouterView v-slot="{ Component }">
-        <Transition name="p5-view" mode="out-in">
+        <Transition name="p5-view">
           <component :is="Component" :key="route.path" />
         </Transition>
       </RouterView>
