@@ -54,7 +54,7 @@ const socials = [
     class="p5-rail fixed top-0 right-0 z-50 flex h-screen w-[86vw] max-w-[22rem] flex-col
            border-l-2 border-paper bg-ink-2
            transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.2,1)]
-           lg:left-0 lg:right-auto lg:z-40 lg:w-[19rem] lg:translate-x-0 lg:border-r-2 lg:border-l-0"
+           lg:left-0 lg:right-auto lg:z-40 lg:w-rail lg:translate-x-0 lg:border-r-2 lg:border-l-0"
     :class="props.open ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'"
     :inert="railInert ? '' : undefined"
   >
@@ -92,7 +92,7 @@ const socials = [
     </RouterLink>
 
     <!-- nav -->
-    <nav class="relative flex-1 overflow-y-auto px-4 pt-2">
+    <nav class="relative min-h-0 flex-1 overflow-y-auto px-4 pt-2">
       <p class="stamp px-3 pb-3 text-mute">— Command</p>
       <ul class="space-y-1.5">
         <li v-for="r in routes" :key="r.path">
@@ -120,9 +120,10 @@ const socials = [
     </nav>
 
     <!-- socials + colophon.
-         The extra bottom padding on lg clears the sheared corner of the rail
-         so no real content ever falls inside the clip. -->
-    <div class="relative border-t-2 border-paper px-4 py-5 lg:pb-16">
+         The clip-path on .p5-rail removes a 56px triangle from the bottom-right,
+         so the content must stop at least 56px above the floor. 80px of padding
+         leaves a comfortable margin. -->
+    <div class="relative shrink-0 border-t-2 border-paper px-4 py-5 lg:pb-20">
       <p class="stamp px-3 pb-2 text-mute">— Elsewhere</p>
       <ul class="space-y-1">
         <li v-for="s in socials" :key="s.label">
@@ -144,7 +145,7 @@ const socials = [
         </li>
       </ul>
 
-      <p class="stamp mt-5 px-3 text-mute/70">Vue 3 · Tailwind · Three inks</p>
+      <p class="stamp mt-5 px-3 text-mute/70">Vue 3 · Tailwind</p>
     </div>
   </aside>
 </template>

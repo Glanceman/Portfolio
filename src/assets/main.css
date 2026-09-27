@@ -97,6 +97,11 @@
   --font-display: 'Anton', 'Arial Narrow', Haettenschweiler, 'Impact', sans-serif;
   --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Space Mono', 'Courier New', monospace;
+
+  /* One source of truth for the command rail's width, so the rail, the page
+     gutter and the progress bar can never drift out of alignment.
+     Emits `w-rail` / `pl-rail` / `left-rail` etc. */
+  --spacing-rail: 19rem;
 }
 
 /* ============================================================================
@@ -276,13 +281,17 @@
   }
 }
 
-/* Route transition: a diagonal slash rips across the viewport */
+/* Route transition: a diagonal slash rips across the viewport.
+   Distances MUST be in vw, not %: a percentage in `translate` resolves against
+   the element's own width, so a narrow bar would stop half-way across the
+   screen instead of clearing it. vw is viewport-relative, so every bar in the
+   sweep travels the same distance no matter how wide it is. */
 @keyframes p5-shutter {
   0% {
-    transform: translate3d(-130%, 0, 0) skewX(-14deg);
+    transform: translate3d(-45vw, 0, 0) skewX(-14deg);
   }
   100% {
-    transform: translate3d(560%, 0, 0) skewX(-14deg);
+    transform: translate3d(115vw, 0, 0) skewX(-14deg);
   }
 }
 

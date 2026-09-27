@@ -9,6 +9,7 @@ import P5Cursor from '@/components/P5Cursor.vue'
 const route = useRoute()
 const menuOpen = ref(false)
 const shutterKey = ref(0)
+const shutterOn = ref(false)
 const progress = ref(0)
 
 function closeMenu() {
@@ -19,15 +20,27 @@ function toggleMenu() {
 }
 provide('closeMenu', closeMenu)
 
-/* --- diagonal shutter sweep between routes --- */
+/* --- diagonal shutter sweep between routes ---
+   The element is mounted for the length of the animation and then removed. A
+   filled-forwards animation that never gets torn down can only ever end up
+   parked somewhere on screen if the timing is ever wrong. */
 let shutterTimer = null
+function fireShutter() {
+  window.clearTimeout(shutterTimer)
+  shutterOn.value = false
+  // next frame so the element is re-created and the animation restarts
+  requestAnimationFrame(() => {
+    shutterKey.value++
+    shutterOn.value = true
+    shutterTimer = window.setTimeout(() => (shutterOn.value = false), 640)
+  })
+}
+onMounted(fireShutter)
 watch(
   () => route.fullPath,
   () => {
     closeMenu()
-    shutterKey.value++
-    window.clearTimeout(shutterTimer)
-    shutterTimer = window.setTimeout(() => {}, 620)
+    fireShutter()
   }
 )
 
@@ -83,7 +96,7 @@ onBeforeUnmount(() => {
   </button>
 
   <!-- reading progress -->
-  <div class="pointer-events-none fixed top-0 right-0 z-[55] h-[5px] lg:left-[19rem]" aria-hidden="true">
+  <div class="pointer-events-none fixed top-0 right-0 z-[55] h-[5px] lg:left-rail" aria-hidden="true">
     <div
       class="h-full bg-accent transition-[width] duration-100 ease-linear"
       :style="{ width: progress * 100 + '%' }"
@@ -93,6 +106,7 @@ onBeforeUnmount(() => {
 
   <!-- route transition: a diagonal slash rips across on navigation -->
   <div
+    v-if="shutterOn"
     :key="'shutter' + shutterKey"
     class="pointer-events-none fixed inset-0 z-[58] overflow-hidden"
     aria-hidden="true"
@@ -113,7 +127,7 @@ onBeforeUnmount(() => {
     class="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.2,1)] lg:translate-x-0"
     :class="menuOpen ? '-translate-x-[24%] lg:translate-x-0' : 'translate-x-0'"
   >
-    <main class="min-h-screen lg:pl-[19rem]">
+    <main class="min-h-screen lg:pl-rail">
       <RouterView v-slot="{ Component }">
         <Transition name="p5-view" mode="out-in">
           <component :is="Component" :key="route.path" />
