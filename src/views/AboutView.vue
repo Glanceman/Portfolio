@@ -1,174 +1,212 @@
 <script setup>
-import { inject } from 'vue'
-
 import IconCard from '@/components/Reusable/IconCard.vue'
-import Scene from '../components/Scene.vue'
+import SectionTitle from '@/components/Reusable/SectionTitle.vue'
+import P5Button from '@/components/Reusable/P5Button.vue'
+import TimelineList from '@/components/Reusable/TimelineList.vue'
+import Scene from '@/components/Scene.vue'
 import historyEvents from '@/assets/historyEvent.json'
 
-// Get Work exp
-let workHistory = historyEvents.filter((e) => e.type === 'Work')
+const workHistory = historyEvents.filter((e) => e.type === 'Work')
+const educationHistory = historyEvents.filter((e) => e.type === 'Education')
 
-let educationHistory = historyEvents.filter((e) => e.type === 'Education')
+const loadout = [
+  {
+    kicker: 'Languages',
+    tone: 'accent',
+    items: [
+      { ImagePath: '/image/C++.png', Word: 'C++' },
+      { ImagePath: '/image/CSharp.png', Word: 'C#' },
+      { ImagePath: '/image/Python.png', Word: 'Python' },
+      { ImagePath: '/image/JS.png', Word: 'JavaScript' },
+      { ImagePath: '/image/HTML5.png', Word: 'HTML5' },
+      { ImagePath: '/image/CSS3.png', Word: 'CSS3' }
+    ]
+  },
+  {
+    kicker: 'Frameworks & tools',
+    tone: 'data',
+    items: [
+      { ImagePath: '/image/UE5.png', Word: 'Unreal 5' },
+      { ImagePath: '/image/Unity.png', Word: 'Unity' },
+      { ImagePath: '/favicon.ico', Word: 'Vue 3' },
+      { ImagePath: '/image/Pytorch.png', Word: 'PyTorch' },
+      { ImagePath: '/image/Blender.png', Word: 'Blender' }
+    ]
+  }
+]
 </script>
 
 <template>
-  <header className="sticky top-0 z-40 bg-black border-b border-pink-600 ">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <h1 className="text-3xl font-bold text-pink-600">About Me</h1>
-    </div>
-  </header>
-
-  <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24 text-white">
-    <section id="introduction" className="space-y-8">
-      <h2 className="text-4xl font-extrabold text-pink-600">Introduction</h2>
-      <div className="flex flex-col lg:flex-row items-center gap-8">
-        <div className="lg:w-1/2">
-          <p className="text-lg leading-relaxed">
-            Welcome to my portfolio website! I am a creative media student with a passion for
-            programming. Here, you'll find examples of my work in languages like Java, Python, and
-            C++, as well as web development technologies like HTML, CSS, and JavaScript. I am always
-            eager to learn and grow as a programmer, and I hope my work reflects that. Thanks for
-            visiting!
-          </p>
-        </div>
-        <div className="lg:w-1/2 h-96 bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <Scene />
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" className="space-y-8">
-      <h2 className="text-4xl font-extrabold text-pink-600">Skills</h2>
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-2xl font-bold mb-4">Programming Languages</h3>
-          <div className="flex flex-wrap gap-4">
-            <IconCard ImagePath="/image/C++.png" Word="C++" />
-            <IconCard ImagePath="/image/CSharp.png" Word="C#" />
-            <IconCard ImagePath="/image/JS.png" Word="JS" />
-            <IconCard ImagePath="/image/HTML5.png" Word="HTML5" />
-            <IconCard ImagePath="/image/CSS3.png" Word="CSS3" />
-            <IconCard ImagePath="/image/Python.png" Word="Python" />
-          </div>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold mb-4">Frameworks</h3>
-          <div className="flex flex-wrap gap-4">
-            <IconCard ImagePath="/image/UE5.png" Word="UE5" />
-            <IconCard ImagePath="/image/Unity.png" Word="Unity" />
-            <IconCard ImagePath="/image/Blender.png" Word="Blender" />
-            <IconCard ImagePath="/favicon.ico" Word="Vue3" />
-            <IconCard ImagePath="/image/Pytorch.png" Word="Pytorch" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="education" className="space-y-8">
-      <h2 className="text-4xl font-extrabold text-pink-600">Education</h2>
-      <ol class="relative border-l-4 border-white">
-        <li class="mb-10 ms-4 text-white" v-for="education in educationHistory">
-          <div className="absolute w-3 h-3 bg-pink-600 mt-1.5 -start-1.5"></div>
-          <time className="mb-1 text-sm font-normal leading-none text-gray-400"
-            >{{ education.from }} - {{ education.to }}</time
-          >
-          <h3 className="text-lg font-semibold text-white">{{ education.name }}</h3>
-          <h4 className="text-base font-semibold text-pink-400">{{ education.organization }}</h4>
-          <div class="flex flex-wrap gap-2 my-2">
-            <div
-              class="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
-              v-for="tag in education.tech_stack"
-            >
-              {{ tag }}
-            </div>
-          </div>
-          <p class="mb-4 text-base font-normal text-gray-300">
-            {{ education.description }}
-          </p>
-        </li>
-      </ol>
-    </section>
-
-    <section id="education" className="space-y-8">
-      <h2 className="text-4xl font-extrabold text-pink-600">Work Experience</h2>
-      <ol class="relative border-l-4 border-white">
-        <li class="mb-10 ms-4 text-white" v-for="work in workHistory">
-          <div className="absolute w-3 h-3 bg-pink-600 mt-1.5 -start-1.5"></div>
-          <time className="mb-1 text-sm font-normal leading-none text-gray-400"
-            >{{ work.from }} - {{ work.to }}</time
-          >
-          <h3 className="text-lg font-semibold text-white">{{ work.name }}</h3>
-          <h4 className="text-base font-semibold text-pink-400">{{ work.organization }}</h4>
-          <div class="flex flex-wrap gap-2 my-2">
-            <div
-              class="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs font-medium -skew-x-6 transform-gpu"
-              v-for="tag in work.tech_stack"
-            >
-              {{ tag }}
-            </div>
-          </div>
-          <p class="mb-4 text-base font-normal text-gray-300">
-            {{ work.description }}
-          </p>
-        </li>
-      </ol>
-    </section>
-  </main>
-
-  <footer className="bg-gray-900 text-white py-12">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl font-extrabold text-pink-600 mb-8">Contact</h2>
+  <div>
+    <!-- ===================== masthead ===================== -->
+    <header class="relative overflow-hidden border-b-2 border-paper">
+      <div class="halftone absolute inset-0 text-paper opacity-[0.06]" aria-hidden="true"></div>
       <div
-        className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0"
-      >
-        <div className="space-y-2">
+        class="slant-lg absolute -top-28 right-[8%] h-72 w-24 bg-accent opacity-[0.14] animate-[p5-drift-a_30s_ease-in-out_infinite]"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative mx-auto max-w-[85rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-14">
+        <p class="stamp mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-accent">
+          <span>// 02</span><span>Profile</span>
+        </p>
+        <h1 class="display text-[clamp(3rem,12vw,8.5rem)] text-paper">
+          About<span class="text-accent">.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-paper/70">
+          A creative media student turned programmer — interested in the part
+          where graphics, systems design and interface craft all meet.
+        </p>
+      </div>
+    </header>
+
+    <!-- ===================== introduction ===================== -->
+    <section class="mx-auto max-w-[85rem] px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
+      <SectionTitle index="01" kicker="Introduction" title="Who is Ben" />
+
+      <div class="mt-14 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="space-y-6 text-lg leading-relaxed text-paper/80">
+          <p>
+            Welcome to my portfolio. I am a creative media student with a passion
+            for programming. Here you'll find work across C++, Python and C#,
+            the web stack in HTML, CSS and JavaScript, plus real-time work in
+            Unreal Engine and Unity.
+          </p>
+          <p>
+            Most of what I build sits where the engine meets the interface —
+            point-cloud networks, 3D pipelines, tools that make messy data
+            legible. I care about the last 10% of polish, the kind where an
+            interface stops being a layout and starts having a point of view.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <P5Button to="/project" variant="solid" size="sm">See the work</P5Button>
+            <P5Button href="mailto:benxian456@gmail.com" variant="ghost" size="sm">
+              Get in touch
+            </P5Button>
+          </div>
+        </div>
+
+        <!-- 3D model, framed like a comic panel -->
+        <div class="relative">
+          <div
+            class="slant absolute -inset-3 border-[3px] border-accent opacity-50"
+            aria-hidden="true"
+          ></div>
+          <div class="relative h-[22rem] overflow-hidden border-[3px] border-paper bg-ink-2 sm:h-[26rem]">
+            <div class="halftone absolute inset-0 z-10 text-accent opacity-[0.1]" aria-hidden="true"></div>
+            <Scene />
+            <p class="stamp absolute bottom-3 left-3 z-20 text-mute">
+              360° / thinking spinning
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== skills ===================== -->
+    <section class="border-y-2 border-paper bg-ink/40">
+      <div class="mx-auto max-w-[85rem] px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
+        <SectionTitle index="02" kicker="Loadout" title="Skills" tone="data" />
+
+        <div class="mt-14 space-y-12">
+          <div v-for="group in loadout" :key="group.kicker">
+            <div class="mb-6 flex items-center gap-4">
+              <span
+                class="slant block h-6 w-2"
+                :class="group.tone === 'data' ? 'bg-data' : 'bg-accent'"
+                aria-hidden="true"
+              ></span>
+              <h3
+                class="display text-2xl"
+                :class="group.tone === 'data' ? 'text-data' : 'text-accent'"
+              >
+                {{ group.kicker }}
+              </h3>
+              <span
+                class="stamp text-mute"
+                :style="{
+                  backgroundImage:
+                    'repeating-linear-gradient(-45deg, currentColor 0 2px, transparent 2px 9px)',
+                  height: '6px',
+                  flex: 1
+                }"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="flex flex-wrap gap-3 sm:gap-4">
+              <IconCard
+                v-for="s in group.items"
+                :key="s.Word"
+                :ImagePath="s.ImagePath"
+                :Word="s.Word"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== history ===================== -->
+    <section class="mx-auto max-w-[85rem] px-5 py-20 sm:px-8 lg:px-14 lg:py-28">
+      <SectionTitle index="03" kicker="History" title="Timeline" />
+
+      <div class="mt-14 space-y-16">
+        <div>
+          <h3 class="display mb-8 text-3xl text-paper">
+            <span class="text-accent">//</span> Work
+          </h3>
+          <TimelineList :items="workHistory" />
+        </div>
+        <div>
+          <h3 class="display mb-8 text-3xl text-paper">
+            <span class="text-data">//</span> Education
+          </h3>
+          <TimelineList :items="educationHistory" tone="data" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== contact ===================== -->
+    <footer class="relative overflow-hidden border-t-2 border-paper bg-ink">
+      <div
+        class="hatch-fat absolute inset-0 text-paper opacity-[0.05] -rotate-6"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative mx-auto max-w-[85rem] px-5 py-20 sm:px-8 lg:px-14">
+        <SectionTitle index="04" kicker="Contact" title="Say hello" />
+
+        <div class="mt-12 grid gap-10 md:grid-cols-2">
           <a
             href="mailto:benxian456@gmail.com"
-            className="flex items-center space-x-2 hover:text-pink-400 transition-colors"
+            class="group block border-b-2 border-paper/30 pb-4 transition-colors hover:border-accent"
+            data-p5-hot
           >
-            <Mail size="{20}" />
-            <span>benxian456@gmail.com</span>
+            <p class="stamp text-mute">Email</p>
+            <p class="display mt-1 text-2xl text-paper group-hover:text-accent sm:text-3xl">
+              benxian456@gmail.com
+            </p>
           </a>
           <a
             href="https://github.com/Glanceman"
-            className="flex items-center space-x-2 hover:text-pink-400 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block border-b-2 border-paper/30 pb-4 transition-colors hover:border-accent"
+            data-p5-hot
           >
-            <Github size="{20}" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ben-xian-5831a5228/"
-            className="flex items-center space-x-2 hover:text-pink-400 transition-colors"
-          >
-            <Linkedin size="{20}" />
-            <span>LinkedIn</span>
+            <p class="stamp text-mute">GitHub</p>
+            <p class="display mt-1 text-2xl text-paper group-hover:text-accent sm:text-3xl">
+              github.com/Glanceman
+            </p>
           </a>
         </div>
-        <div className="text-sm text-gray-400">© Ben. All rights reserved.</div>
+
+        <div class="mt-16 flex flex-col gap-4 border-t-2 border-paper/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p class="stamp text-mute">© Ben — all rights reserved</p>
+          <p class="stamp text-mute">Vue 3 · Tailwind · Three inks</p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 </template>
-
-<style scoped>
-@reference "../assets/main.css";
-
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: white;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  @apply bg-pink-700;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-pink-600;
-}
-</style>
