@@ -8,19 +8,18 @@ import hljs from 'highlight.js/lib/core'
 import python from 'highlight.js/lib/languages/python'
 import cpp from 'highlight.js/lib/languages/cpp'
 import js from 'highlight.js/lib/languages/javascript'
-import 'highlight.js/styles/atom-one-dark-reasonable.min.css'
-import MyButton from '../components/Reusable/MyButton.vue'
+import SectionTitle from '@/components/Reusable/SectionTitle.vue'
 
-//registry
+// registry
 hljs.registerLanguage('python', python)
 hljs.registerLanguage('cpp', cpp)
 hljs.registerLanguage('js', js)
 
 // get list of MDs
-let table = ref([])
+const table = ref([])
 table.value = markdownTable
 
-let menuOpen = ref(false)
+const tocOpen = ref(false)
 
 const markdown = new MarkdownIt({
   linkify: true,
@@ -28,90 +27,138 @@ const markdown = new MarkdownIt({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        let res = hljs.highlight(str, { language: lang }).value
-        return res
-      } catch (__) { }
+        return hljs.highlight(str, { language: lang }).value
+      } catch (__) {
+        /* fall through to default escaping */
+      }
     }
-    return '' // use external default escaping
+    return ''
   }
 })
 markdown.use(mk)
 
-let selectedMD = ref('')
-let htmlOfMD = ref('')
-async function diplayMDContent(fileName) {
-  let url = getUrl('/blog/' + fileName)
-  const file = await fetch(url)
-  let content = await file.text()
-  htmlOfMD.value = markdown.render(content)
+const selectedMD = ref('')
+const htmlOfMD = ref('')
+const loading = ref(false)
+
+async function displayMDContent(fileName) {
+  loading.value = true
+  try {
+    const url = getUrl('/blog/' + fileName)
+    const file = await fetch(url)
+    const content = await file.text()
+    htmlOfMD.value = markdown.render(content)
+  } finally {
+    loading.value = false
+  }
 }
 
 function selectedDisplayMD(file) {
   selectedMD.value = file
-  diplayMDContent(selectedMD.value.file)
-  //menuOpen.value=false
+  tocOpen.value = false
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  displayMDContent(selectedMD.value.file)
 }
 
 onMounted(() => {
-  // select the first MD
   selectedDisplayMD(table.value[0])
 })
 </script>
 
 <template>
-  <div class="min-h-screen bg-black text-white">
-    <header class="sticky top-0 z-40 bg-black border-b border-pink-600 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex gap-2 items-center">
-        <button @click="menuOpen = !menuOpen" class="sm:hidden text-pink-600 focus:outline-hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-        <h1 class="text-2xl sm:text-3xl font-bold text-pink-600">{{ selectedMD.name }}</h1>
+  <div class="min-h-screen">
+    <!-- ===================== masthead ===================== -->
+    <header class="relative overflow-hidden border-b-2 border-paper">
+      <div class="halftone absolute inset-0 text-paper opacity-[0.06]" aria-hidden="true"></div>
+      <div
+        class="slant-lg absolute -top-24 right-[10%] h-80 w-24 bg-data opacity-[0.12] animate-[p5-drift-a_29s_ease-in-out_infinite]"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative mx-auto max-w-[85rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-14">
+        <p class="stamp mb-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-data">
+          <span>// 04</span><span>Notes</span>
+        </p>
+        <h1 class="display text-[clamp(3rem,12vw,8.5rem)] text-paper">
+          Blog<span class="text-data">.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-paper/70">
+          Cheat sheets, scratch notes and things I had to look up twice.
+        </p>
       </div>
     </header>
 
-    <main class="w-full flex flex-col sm:flex-row">
-      <!-- ^^^This detemine the height sticky need to look for this -->
-      <aside :class="{
-        'hidden sm:block': !menuOpen,
-        'block sticky top-16 animate-[fadeIn_0.5s_linear]': menuOpen
-      }" class="w-full flex-none bg-gray-900 sm:w-72 sm:min-h-screen">
-        <nav class="sm:sticky sm:top-16 p-4">
-          <h2 class="text-2xl font-bold mb-4 text-pink-600 text-center">Table of Contents</h2>
-          <div class="space-y-2">
-            <MyButton class="text-lg lg:text-xl" v-for="record in table"
-              :isActivate="selectedMD.name === record.name ? true : false" :text="record.name" textColor="text-white"
-              activateTextColor="text-black" windowColor="bg-pink-600" @click="() => selectedDisplayMD(record)" />
+    <div class="mx-auto flex max-w-[85rem] flex-col gap-10 px-5 py-12 sm:px-8 lg:flex-row lg:gap-14 lg:px-14 lg:py-16">
+      <!-- ===================== table of contents ===================== -->
+      <aside class="lg:w-72 lg:shrink-0">
+        <!-- mobile trigger -->
+        <button
+          type="button"
+          class="p5-btn p5-btn--sm w-full lg:hidden"
+          :aria-expanded="tocOpen"
+          data-p5-hot
+          @click="tocOpen = !tocOpen"
+        >
+          {{ tocOpen ? 'Hide' : 'Show' }} {{ table.length }} notes
+        </button>
+
+        <div
+          class="mt-4 lg:mt-0 lg:sticky lg:top-8"
+          :class="tocOpen ? 'block' : 'hidden lg:block'"
+        >
+          <p class="stamp mb-3 px-3 text-mute">— Contents</p>
+          <ul class="space-y-1.5">
+            <li v-for="r in table" :key="r.file">
+              <button
+                type="button"
+                class="p5-nav-item text-left"
+                :class="{ 'p5-nav-item--on': selectedMD.name === r.name }"
+                :aria-current="selectedMD.name === r.name ? 'page' : undefined"
+                data-p5-hot
+                @click="selectedDisplayMD(r)"
+              >
+                <span class="flex min-w-0 items-baseline gap-3">
+                  <span
+                    class="p5-nav-item__label display truncate text-[1.25rem]"
+                  >
+                    {{ r.name }}
+                  </span>
+                </span>
+                <span
+                  class="stamp shrink-0 opacity-0 transition-opacity duration-150 [.p5-nav-item:hover_&]:opacity-100"
+                  aria-hidden="true"
+                >
+                  ▶
+                </span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="mt-8 hidden lg:block">
+            <p class="stamp mb-3 px-3 text-mute">— Colophon</p>
+            <p class="px-3 text-sm leading-relaxed text-paper/55">
+              Rendered with markdown-it + KaTeX. Code highlighted with
+              highlight.js, recoloured to match the rest of the site.
+            </p>
           </div>
-        </nav>
+        </div>
       </aside>
-      <article class="p-2 sm:p-4 min-w-0">
-        <div class="prose prose-invert prose-pink max-w-none" v-html="htmlOfMD"></div>
+
+      <!-- ===================== article ===================== -->
+      <article class="min-w-0 flex-1">
+        <SectionTitle
+          :title="selectedMD.name || 'Loading'"
+          kicker="Currently reading"
+          tone="data"
+        />
+
+        <div
+          class="mt-10 transition-opacity duration-200"
+          :class="loading ? 'opacity-40' : 'opacity-100'"
+        >
+          <div class="p5-prose prose prose-invert max-w-none" v-html="htmlOfMD"></div>
+        </div>
       </article>
-    </main>
+    </div>
   </div>
 </template>
-
-<style scoped>
-@reference "../assets/main.css";
-
-::-webkit-scrollbar {
-  width: 15px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: white;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  @apply bg-pink-700;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-pink-600;
-}
-</style>

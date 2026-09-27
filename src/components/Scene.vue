@@ -1,92 +1,91 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import * as THREE from 'three'
 import { getUrl } from '@/assets/tools.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+
 const canvas = ref(null)
 
-function resizeRendererToDisplaySize(renderer, canvas) {
-  const width = canvas.clientWidth
-  const height = canvas.clientHeight
-  const needResize = canvas.width !== width || canvas.height !== height
-  if (needResize) {
-    renderer.setSize(width, height, false)
-  }
-  return needResize
+let renderer = null
+let model = null
+let raf = 0
+let disposed = false
+
+function disposeObject(root) {
+  root.traverse((o) => {
+    if (o.geometry) o.geometry.dispose()
+    const mats = Array.isArray(o.material) ? o.material : o.material ? [o.material] : []
+    mats.forEach((m) => {
+      Object.values(m).forEach((v) => {
+        if (v && v.isTexture) v.dispose()
+      })
+      m.dispose()
+    })
+  })
 }
 
 onMounted(async () => {
-  let width = 100
-  let height = 100
-  let model = null
-  const renderer = new THREE.WebGLRenderer({
+  const el = canvas.value
+  if (!el) return
+
+  renderer = new THREE.WebGLRenderer({
     antialias: true,
-    canvas: canvas.value,
+    canvas: el,
     alpha: true
   })
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    canvas.value.width / canvas.value.height,
-    0.1,
-    1000
-  )
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+  const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
   camera.position.z = 12
   camera.position.y = 0
 
   const scene = new THREE.Scene()
-
-  const gltfLoader = new GLTFLoader()
-  const url = getUrl('/model/thinking_spinning/scene.gltf')
-  
-  gltfLoader.load(url, (gltf) => {
-    const root = gltf.scene
-    model = root
-    scene.add(root)
-  })
-
-  //   const geometry = new THREE.BoxGeometry(1, 1, 1)
-  //   const material = new THREE.MeshPhongMaterial({ color: 0x44aa88 })
-  //   const cube = new THREE.Mesh(geometry, material)
-  //   scene.add(cube)
-
-  const color = 0xffffff
-  const intensity = 3
-  const light = new THREE.DirectionalLight(color, intensity)
+  scene.add(new THREE.AmbientLight(0xffffff, 1.6))
+  const light = new THREE.DirectionalLight(0xffffff, 3)
   light.position.set(-1, 2, 4)
   scene.add(light)
 
-  function resizeRendererToDisplaySize(renderer) {
-    const canvas = renderer.domElement
-    const width = canvas.clientWidth
-    const height = canvas.clientHeight
-    const needResize = canvas.width !== width || canvas.height !== height
-    if (needResize) {
-      renderer.setSize(width, height, false)
+  let model = null
+  new GLTFLoader().load(getUrl('/model/thinking_spinning/scene.gltf'), (gltf) => {
+    if (disposed) {
+      disposeObject(gltf.scene)
+      return
     }
-    return needResize
+    model = gltf.scene
+    scene.add(model)
+  })
+
+  function resize() {
+    const w = el.clientWidth
+    const h = el.clientHeight
+    if (!w || !h) return
+    // renderer owns the canvas; only push a size change when it actually changed
+    if (el.width !== w || el.height !== h) {
+      renderer.setSize(w, h, false)
+      camera.aspect = w / h
+      camera.updateProjectionMatrix()
+    }
   }
 
   function render(time) {
-    time *= 0.001 // convert time to seconds
-    // cube.rotation.x = time
-    // cube.rotation.y = time
-    if (model != null) {
-      model.rotation.y = -time
-    }
-    if (canvas != null && camera != null) {
-      if (resizeRendererToDisplaySize(renderer, canvas)) {
-        camera.aspect = canvas.value.clientWidth / canvas.value.clientHeight
-        camera.updateProjectionMatrix()
-      }
-    }
-
+    if (disposed) return
+    raf = requestAnimationFrame(render)
+    resize()
+    if (model) model.rotation.y = -time * 0.001
     renderer.render(scene, camera)
-    requestAnimationFrame(render)
   }
-  requestAnimationFrame(render)
+  raf = requestAnimationFrame(render)
+})
+
+onBeforeUnmount(() => {
+  disposed = true
+  cancelAnimationFrame(raf)
+  if (model) disposeObject(model)
+  renderer?.dispose()
+  renderer = null
 })
 </script>
 
 <template>
-  <canvas class="w-full h-full" ref="canvas"></canvas>
+  <canvas ref="canvas" class="block h-full w-full"></canvas>
 </template>

@@ -10,7 +10,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "aos": "^2.3.4",
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0",
     "highlight.js": "^11.11.1",
     "markdown-it": "^14.1.0",
     "markdown-it-katex": "^2.0.3",
