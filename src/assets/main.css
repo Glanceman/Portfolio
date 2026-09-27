@@ -98,10 +98,12 @@
   --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Space Mono', 'Courier New', monospace;
 
-  /* One source of truth for the command rail's width, so the rail, the page
+  /* One source of truth for the command rail's widths, so the rail, the page
      gutter and the progress bar can never drift out of alignment.
-     Emits `w-rail` / `pl-rail` / `left-rail` etc. */
+     Emits `w-rail` / `pl-rail` / `left-rail` etc. and the `-min` variants used
+     when the rail is collapsed. */
   --spacing-rail: 19rem;
+  --spacing-rail-min: 6rem;
 }
 
 /* ============================================================================
@@ -711,6 +713,12 @@
   .p5-nav-item--on::before {
     transform: scaleX(1);
     background: var(--color-paper);
+  }
+
+  /* Collapsed rail: the label slams out of the rail edge on hover, sheared to
+     match the nav rows it belongs to. */
+  .p5-flyout {
+    transform: skewX(-10deg);
   }
 
   /* ==========================================================================

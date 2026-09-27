@@ -12,6 +12,23 @@ const shutterKey = ref(0)
 const shutterOn = ref(false)
 const progress = ref(0)
 
+/* --- collapsible command rail (desktop) --- */
+const RAIL_KEY = 'p5-rail-collapsed'
+const railCollapsed = ref(false)
+try {
+  railCollapsed.value = localStorage.getItem(RAIL_KEY) === '1'
+} catch {
+  /* private mode / storage disabled — collapsing just won't persist */
+}
+function toggleRail() {
+  railCollapsed.value = !railCollapsed.value
+  try {
+    localStorage.setItem(RAIL_KEY, railCollapsed.value ? '1' : '0')
+  } catch {
+    /* ignore */
+  }
+}
+
 function closeMenu() {
   menuOpen.value = false
 }
@@ -67,7 +84,12 @@ onBeforeUnmount(() => {
   <BackdropFX />
   <P5Cursor />
 
-  <Header :open="menuOpen" @close="closeMenu" />
+  <Header
+    :open="menuOpen"
+    :collapsed="railCollapsed"
+    @close="closeMenu"
+    @toggle-collapse="toggleRail"
+  />
 
   <!-- menu trigger (small screens only) -->
   <button
@@ -96,7 +118,11 @@ onBeforeUnmount(() => {
   </button>
 
   <!-- reading progress -->
-  <div class="pointer-events-none fixed top-0 right-0 z-[55] h-[5px] lg:left-rail" aria-hidden="true">
+  <div
+    class="pointer-events-none fixed top-0 right-0 z-[55] h-[5px] transition-[left] duration-300 ease-[cubic-bezier(0.2,0.9,0.2,1)]"
+    :class="railCollapsed ? 'lg:left-rail-min' : 'lg:left-rail'"
+    aria-hidden="true"
+  >
     <div
       class="h-full bg-accent transition-[width] duration-100 ease-linear"
       :style="{ width: progress * 100 + '%' }"
@@ -127,7 +153,10 @@ onBeforeUnmount(() => {
     class="transition-transform duration-300 ease-[cubic-bezier(0.2,0.9,0.2,1)] lg:translate-x-0"
     :class="menuOpen ? '-translate-x-[24%] lg:translate-x-0' : 'translate-x-0'"
   >
-    <main class="min-h-screen lg:pl-rail">
+    <main
+      class="min-h-screen transition-[padding] duration-300 ease-[cubic-bezier(0.2,0.9,0.2,1)]"
+      :class="railCollapsed ? 'lg:pl-rail-min' : 'lg:pl-rail'"
+    >
       <!--
         NOTE: do NOT add mode="out-in" here.
         vue-router hands the slot a pre-created VNode rather than a component
